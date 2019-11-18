@@ -179,25 +179,22 @@ extension ViewController {
              self.updateLogging(text: "Couldn't deserialize result JSON")
              return
              }*/
-           do {
-            let allContacts = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String : AnyObject]
-            self.updateLogging(text: "DATA: \(allContacts)")
-            //let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            DispatchQueue.main.async {
-               // UIView usage
-              //let vc = storyboard.instantiateViewController(withIdentifier: "SoapView")
-              //self.present(vc, animated: true, completion: nil);
-                let newViewController = storyBoard.instantiateViewController(withIdentifier: "SoapView") as! SoapViewController
-                           self.navigationController?.pushViewController(newViewController, animated: true)
+            do {
+                let allContacts = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String : AnyObject]
+                self.updateLogging(text: "DATA: \(allContacts)")
+                //let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                DispatchQueue.main.async {
+                    let newViewController = storyBoard.instantiateViewController(withIdentifier: "SoapView") as! SoapViewController
+                    self.navigationController?.pushViewController(newViewController, animated: true)
+                }
+                
+                
+                
             }
-           
-            
-        
-           }
-           catch {
-               
-           }
+            catch {
+                
+            }
             
             
         }.resume()
