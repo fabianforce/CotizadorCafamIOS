@@ -1,18 +1,26 @@
 PODS:
+  - Alamofire (5.0.0-rc.3)
   - MSAL (1.0.2):
     - MSAL/app-lib (= 1.0.2)
   - MSAL/app-lib (1.0.2)
+  - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 5.0.0-rc.3)
   - MSAL
+  - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - MSAL
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
+  Alamofire: ca8c0de6906873be89d6deec5c8de279e00bf872
   MSAL: e63c1483f2f291717b94891ee8b201f6f91d6d41
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: cbecd1bdd6dd4f1fc03598a6532664cf3621e7a6
+PODFILE CHECKSUM: bc1509ff9235157bfb0cd363a37e8327df10b5ee
 
 COCOAPODS: 1.8.4

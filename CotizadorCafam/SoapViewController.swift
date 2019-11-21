@@ -12,6 +12,7 @@ class SoapViewController: UIViewController {
     
     @IBOutlet weak var NombreText: UITextField!
     @IBOutlet weak var esAfiliadoSwitch: UISwitch!
+    @IBOutlet weak var labelAfiliado: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +27,10 @@ class SoapViewController: UIViewController {
     @objc fileprivate func handleSwitch(){
         if self.esAfiliadoSwitch.isOn {
             print("ON")
+            self.labelAfiliado.text = "Afiliado"
         }else{
             print("False")
+            self.labelAfiliado.text = "No Afiliado"
         }
     }
     func initUI() {

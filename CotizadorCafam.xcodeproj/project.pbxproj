@@ -17,6 +17,12 @@
 		C612363B237F06830021BE95 /* CotizadorCafamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C612363A237F06830021BE95 /* CotizadorCafamUITests.swift */; };
 		C66D3A762382D34400AB225A /* LoginSoapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66D3A752382D34400AB225A /* LoginSoapController.swift */; };
 		C66D3A782382E28A00AB225A /* SoapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66D3A772382E28A00AB225A /* SoapViewController.swift */; };
+		C67C287923844EA20043336A /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67C287823844EA20043336A /* MenuViewController.swift */; };
+		C6EA18862387481F00B1DA85 /* AlertInfraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EA18842387481F00B1DA85 /* AlertInfraViewController.swift */; };
+		C6EA18872387481F00B1DA85 /* AlertInfraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6EA18852387481F00B1DA85 /* AlertInfraViewController.xib */; };
+		C6EA18892387596B00B1DA85 /* UIVViewController-SLPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EA18882387596B00B1DA85 /* UIVViewController-SLPopup.swift */; };
+		C6FFFA4923857AA000C92344 /* RestApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FFFA4823857AA000C92344 /* RestApiManager.swift */; };
+		C6FFFA4B2385815A00C92344 /* InfraestructuraObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FFFA4A2385815A00C92344 /* InfraestructuraObject.swift */; };
 		C71CAF61A733E8240CBEFBE7 /* Pods_CotizadorCafam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D794A6D7892C463F5B3D3EC /* Pods_CotizadorCafam.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +62,12 @@
 		C612363C237F06830021BE95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C66D3A752382D34400AB225A /* LoginSoapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSoapController.swift; sourceTree = "<group>"; };
 		C66D3A772382E28A00AB225A /* SoapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoapViewController.swift; sourceTree = "<group>"; };
+		C67C287823844EA20043336A /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		C6EA18842387481F00B1DA85 /* AlertInfraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertInfraViewController.swift; sourceTree = "<group>"; };
+		C6EA18852387481F00B1DA85 /* AlertInfraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertInfraViewController.xib; sourceTree = "<group>"; };
+		C6EA18882387596B00B1DA85 /* UIVViewController-SLPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIVViewController-SLPopup.swift"; path = "../../../Downloads/Custom-Popup-in-swift-4-master/Custom Popup/Custom Popup/UIVViewController-SLPopup.swift"; sourceTree = "<group>"; };
+		C6FFFA4823857AA000C92344 /* RestApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestApiManager.swift; sourceTree = "<group>"; };
+		C6FFFA4A2385815A00C92344 /* InfraestructuraObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfraestructuraObject.swift; sourceTree = "<group>"; };
 		E5DA3285E513DE31E3243271 /* Pods-CotizadorCafam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CotizadorCafam.release.xcconfig"; path = "Target Support Files/Pods-CotizadorCafam/Pods-CotizadorCafam.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,12 +142,18 @@
 				C6123618237F067D0021BE95 /* AppDelegate.swift */,
 				C66D3A752382D34400AB225A /* LoginSoapController.swift */,
 				C612361A237F067D0021BE95 /* SceneDelegate.swift */,
+				C6FFFA4823857AA000C92344 /* RestApiManager.swift */,
+				C67C287823844EA20043336A /* MenuViewController.swift */,
 				C66D3A772382E28A00AB225A /* SoapViewController.swift */,
+				C6EA18882387596B00B1DA85 /* UIVViewController-SLPopup.swift */,
 				C612361C237F067D0021BE95 /* ViewController.swift */,
+				C6FFFA4A2385815A00C92344 /* InfraestructuraObject.swift */,
 				C612361E237F067D0021BE95 /* Main.storyboard */,
 				C6123621237F06820021BE95 /* Assets.xcassets */,
 				C6123623237F06820021BE95 /* LaunchScreen.storyboard */,
 				C6123626237F06820021BE95 /* Info.plist */,
+				C6EA18842387481F00B1DA85 /* AlertInfraViewController.swift */,
+				C6EA18852387481F00B1DA85 /* AlertInfraViewController.xib */,
 			);
 			path = CotizadorCafam;
 			sourceTree = "<group>";
@@ -264,6 +282,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6EA18872387481F00B1DA85 /* AlertInfraViewController.xib in Resources */,
 				C6123625237F06820021BE95 /* LaunchScreen.storyboard in Resources */,
 				C6123622237F06820021BE95 /* Assets.xcassets in Resources */,
 				C6123620237F067D0021BE95 /* Main.storyboard in Resources */,
@@ -334,10 +353,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				C66D3A762382D34400AB225A /* LoginSoapController.swift in Sources */,
+				C6EA18892387596B00B1DA85 /* UIVViewController-SLPopup.swift in Sources */,
+				C67C287923844EA20043336A /* MenuViewController.swift in Sources */,
 				C612361D237F067D0021BE95 /* ViewController.swift in Sources */,
 				C6123619237F067D0021BE95 /* AppDelegate.swift in Sources */,
+				C6EA18862387481F00B1DA85 /* AlertInfraViewController.swift in Sources */,
 				C612361B237F067D0021BE95 /* SceneDelegate.swift in Sources */,
+				C6FFFA4923857AA000C92344 /* RestApiManager.swift in Sources */,
 				C66D3A782382E28A00AB225A /* SoapViewController.swift in Sources */,
+				C6FFFA4B2385815A00C92344 /* InfraestructuraObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
