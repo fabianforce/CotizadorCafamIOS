@@ -125,7 +125,7 @@
                                                                     <color key="titleShadowColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <segue destination="Xff-ix-dgg" kind="push" id="wHw-l1-iRF"/>
+                                                                    <segue destination="rqr-ii-mNs" kind="show" id="wbK-Kz-Igs"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -307,11 +307,86 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k3c-vf-Aca" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2809" y="96"/>
+            <point key="canvasLocation" x="4204" y="-425"/>
+        </scene>
+        <!--Service Menu View Controller-->
+        <scene sceneID="DWL-gn-dpW">
+            <objects>
+                <viewController id="rqr-ii-mNs" customClass="ServiceMenuViewController" customModule="CotizadorCafam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JKo-AD-U1t">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0B-na-qic">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="mYh-z3-D2y">
+                                        <rect key="frame" x="0.0" y="47" width="414" height="46"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SERVICIOS CAFAM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugf-k7-r2M">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.29242777819999999" blue="0.62921547889999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Escoje un Servicio o continúe con la cotización" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aET-FU-RHb">
+                                                <rect key="frame" x="0.0" y="25.5" width="414" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newmenu" translatesAutoresizingMaskIntoConstraints="NO" id="la6-ff-3Lv">
+                                        <rect key="frame" x="0.0" y="193" width="414" height="400"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="400" id="DEM-qI-TVS"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNa-dT-IO0">
+                                        <rect key="frame" x="167" y="227" width="80" height="71"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="FJc-Xh-VBv"/>
+                                            <constraint firstAttribute="width" constant="80" id="le4-qT-8cJ"/>
+                                        </constraints>
+                                        <connections>
+                                            <segue destination="Xff-ix-dgg" kind="show" id="vsL-VY-NoK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="mYh-z3-D2y" firstAttribute="leading" secondItem="z0B-na-qic" secondAttribute="leading" id="3ZO-o7-ZNJ"/>
+                                    <constraint firstItem="la6-ff-3Lv" firstAttribute="trailing" secondItem="mYh-z3-D2y" secondAttribute="trailing" id="7yj-tD-JTf"/>
+                                    <constraint firstAttribute="trailing" secondItem="mYh-z3-D2y" secondAttribute="trailing" id="CQs-c3-mP8"/>
+                                    <constraint firstItem="mYh-z3-D2y" firstAttribute="top" secondItem="z0B-na-qic" secondAttribute="top" constant="47" id="IB2-bJ-aFR"/>
+                                    <constraint firstItem="la6-ff-3Lv" firstAttribute="top" secondItem="mYh-z3-D2y" secondAttribute="bottom" constant="100" id="Ijc-zA-Cje"/>
+                                    <constraint firstItem="la6-ff-3Lv" firstAttribute="leading" secondItem="mYh-z3-D2y" secondAttribute="leading" id="P4y-cH-oHt"/>
+                                    <constraint firstItem="aNa-dT-IO0" firstAttribute="leading" secondItem="z0B-na-qic" secondAttribute="leading" constant="164" id="RRK-wK-URO"/>
+                                    <constraint firstItem="aNa-dT-IO0" firstAttribute="top" secondItem="z0B-na-qic" secondAttribute="top" constant="227" id="Zd8-Dv-Mh8"/>
+                                    <constraint firstAttribute="trailing" secondItem="aNa-dT-IO0" secondAttribute="trailing" constant="170" id="j5I-Oa-enV"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="z0B-na-qic" firstAttribute="leading" secondItem="aok-zW-4ce" secondAttribute="leading" id="6N5-kp-FiA"/>
+                            <constraint firstItem="aok-zW-4ce" firstAttribute="trailing" secondItem="z0B-na-qic" secondAttribute="trailing" id="AWy-qd-OEs"/>
+                            <constraint firstItem="z0B-na-qic" firstAttribute="top" secondItem="aok-zW-4ce" secondAttribute="top" id="adt-W7-6Xb"/>
+                            <constraint firstItem="aok-zW-4ce" firstAttribute="bottom" secondItem="z0B-na-qic" secondAttribute="bottom" id="dLh-xD-4Mf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aok-zW-4ce"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dki-TM-0Gc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aTu-D9-2df" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3011.594202898551" y="81.696428571428569"/>
         </scene>
     </scenes>
     <resources>
         <image name="logocafa" width="250" height="210"/>
+        <image name="newmenu" width="1200" height="1200"/>
         <image name="plus" catalog="system" width="64" height="56"/>
     </resources>
     <color key="tintColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
