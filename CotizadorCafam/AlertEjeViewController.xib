@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlertEjeViewController" customModule="CotizadorCafam" customModuleProvider="target">
             <connections>
+                <outlet property="tableViewPlaces" destination="nLh-hc-BRV" id="vFk-6K-lFA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

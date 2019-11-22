@@ -14,7 +14,7 @@ protocol PopupDeleget {
 }
 
 class AlertInfraViewController: UIViewController {
-    
+    // encargada del modal EJES DE FORMACION ME CONFUNDI DE NOMBRE LUEGO CAMBIAR
     @IBOutlet weak var tableViewEjes: UITableView!
     @IBOutlet weak var Button: UIButton!
     var items = [String]()
@@ -27,7 +27,7 @@ class AlertInfraViewController: UIViewController {
         AF.request(url, method: .post, parameters:  [
             "apiKey": "58587775f2f54284a4e8b5e92e0b611f",
             "JSON": "1",
-            "method":"getInfraestructuras"
+            "method":"getEjeFormacion"
         ]).responseJSON {
             response in
             switch (response.result) {
