@@ -21,6 +21,10 @@
 		C6EA18862387481F00B1DA85 /* AlertInfraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EA18842387481F00B1DA85 /* AlertInfraViewController.swift */; };
 		C6EA18872387481F00B1DA85 /* AlertInfraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6EA18852387481F00B1DA85 /* AlertInfraViewController.xib */; };
 		C6EA18892387596B00B1DA85 /* UIVViewController-SLPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EA18882387596B00B1DA85 /* UIVViewController-SLPopup.swift */; };
+		C6EA188C238766DF00B1DA85 /* AlertEjeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EA188A238766DF00B1DA85 /* AlertEjeViewController.swift */; };
+		C6EA188D238766DF00B1DA85 /* AlertEjeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6EA188B238766DF00B1DA85 /* AlertEjeViewController.xib */; };
+		C6EA18902387694D00B1DA85 /* AlertProgramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EA188E2387694D00B1DA85 /* AlertProgramaViewController.swift */; };
+		C6EA18912387694D00B1DA85 /* AlertProgramaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6EA188F2387694D00B1DA85 /* AlertProgramaViewController.xib */; };
 		C6FFFA4923857AA000C92344 /* RestApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FFFA4823857AA000C92344 /* RestApiManager.swift */; };
 		C6FFFA4B2385815A00C92344 /* InfraestructuraObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FFFA4A2385815A00C92344 /* InfraestructuraObject.swift */; };
 		C71CAF61A733E8240CBEFBE7 /* Pods_CotizadorCafam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D794A6D7892C463F5B3D3EC /* Pods_CotizadorCafam.framework */; };
@@ -66,6 +70,10 @@
 		C6EA18842387481F00B1DA85 /* AlertInfraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertInfraViewController.swift; sourceTree = "<group>"; };
 		C6EA18852387481F00B1DA85 /* AlertInfraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertInfraViewController.xib; sourceTree = "<group>"; };
 		C6EA18882387596B00B1DA85 /* UIVViewController-SLPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIVViewController-SLPopup.swift"; path = "../../../Downloads/Custom-Popup-in-swift-4-master/Custom Popup/Custom Popup/UIVViewController-SLPopup.swift"; sourceTree = "<group>"; };
+		C6EA188A238766DF00B1DA85 /* AlertEjeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertEjeViewController.swift; sourceTree = "<group>"; };
+		C6EA188B238766DF00B1DA85 /* AlertEjeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertEjeViewController.xib; sourceTree = "<group>"; };
+		C6EA188E2387694D00B1DA85 /* AlertProgramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertProgramaViewController.swift; sourceTree = "<group>"; };
+		C6EA188F2387694D00B1DA85 /* AlertProgramaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertProgramaViewController.xib; sourceTree = "<group>"; };
 		C6FFFA4823857AA000C92344 /* RestApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestApiManager.swift; sourceTree = "<group>"; };
 		C6FFFA4A2385815A00C92344 /* InfraestructuraObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfraestructuraObject.swift; sourceTree = "<group>"; };
 		E5DA3285E513DE31E3243271 /* Pods-CotizadorCafam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CotizadorCafam.release.xcconfig"; path = "Target Support Files/Pods-CotizadorCafam/Pods-CotizadorCafam.release.xcconfig"; sourceTree = "<group>"; };
@@ -154,6 +162,10 @@
 				C6123626237F06820021BE95 /* Info.plist */,
 				C6EA18842387481F00B1DA85 /* AlertInfraViewController.swift */,
 				C6EA18852387481F00B1DA85 /* AlertInfraViewController.xib */,
+				C6EA188A238766DF00B1DA85 /* AlertEjeViewController.swift */,
+				C6EA188B238766DF00B1DA85 /* AlertEjeViewController.xib */,
+				C6EA188E2387694D00B1DA85 /* AlertProgramaViewController.swift */,
+				C6EA188F2387694D00B1DA85 /* AlertProgramaViewController.xib */,
 			);
 			path = CotizadorCafam;
 			sourceTree = "<group>";
@@ -286,6 +298,8 @@
 				C6123625237F06820021BE95 /* LaunchScreen.storyboard in Resources */,
 				C6123622237F06820021BE95 /* Assets.xcassets in Resources */,
 				C6123620237F067D0021BE95 /* Main.storyboard in Resources */,
+				C6EA18912387694D00B1DA85 /* AlertProgramaViewController.xib in Resources */,
+				C6EA188D238766DF00B1DA85 /* AlertEjeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,11 +370,13 @@
 				C6EA18892387596B00B1DA85 /* UIVViewController-SLPopup.swift in Sources */,
 				C67C287923844EA20043336A /* MenuViewController.swift in Sources */,
 				C612361D237F067D0021BE95 /* ViewController.swift in Sources */,
+				C6EA18902387694D00B1DA85 /* AlertProgramaViewController.swift in Sources */,
 				C6123619237F067D0021BE95 /* AppDelegate.swift in Sources */,
 				C6EA18862387481F00B1DA85 /* AlertInfraViewController.swift in Sources */,
 				C612361B237F067D0021BE95 /* SceneDelegate.swift in Sources */,
 				C6FFFA4923857AA000C92344 /* RestApiManager.swift in Sources */,
 				C66D3A782382E28A00AB225A /* SoapViewController.swift in Sources */,
+				C6EA188C238766DF00B1DA85 /* AlertEjeViewController.swift in Sources */,
 				C6FFFA4B2385815A00C92344 /* InfraestructuraObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

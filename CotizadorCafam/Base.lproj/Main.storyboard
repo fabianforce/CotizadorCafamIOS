@@ -201,18 +201,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="q58-Cm-ogv">
-                                <rect key="frame" x="0.0" y="10" width="414" height="40"/>
+                                <rect key="frame" x="0.0" y="10" width="414" height="56"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nhS-av-fCO">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+                                        <rect key="frame" x="8" y="8" width="398" height="40"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cef-mF-wfY">
-                                                <rect key="frame" x="0.0" y="3" width="374" height="34"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="SELECCIONE UN EJE DE FORMACIÓN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cef-mF-wfY">
+                                                <rect key="frame" x="0.0" y="3" width="358" height="34"/>
+                                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TVl-RA-10S">
-                                                <rect key="frame" x="374" y="0.0" width="40" height="40"/>
+                                                <rect key="frame" x="358" y="0.0" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="YcN-4j-N1l"/>
                                                     <constraint firstAttribute="height" constant="40" id="ua9-82-xCY"/>
@@ -228,17 +229,18 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D2c-GY-cPG">
-                                <rect key="frame" x="0.0" y="57" width="414" height="40"/>
+                                <rect key="frame" x="0.0" y="65" width="414" height="56"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3b8-RO-Z97">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="SELECCIONE UNA INFRAESTRUCTURA" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3b8-RO-Z97">
+                                        <rect key="frame" x="8" y="8" width="358" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UzA-eD-30P">
-                                        <rect key="frame" x="374" y="0.0" width="40" height="40"/>
+                                        <rect key="frame" x="366" y="8" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="PKy-Ys-16i"/>
                                             <constraint firstAttribute="height" constant="40" id="y23-Kg-jlv"/>
@@ -247,19 +249,23 @@
                                         <state key="normal" image="plus" catalog="system">
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnOpenModalInfra:" destination="Xff-ix-dgg" eventType="touchUpInside" id="02x-Zn-dUw"/>
+                                        </connections>
                                     </button>
                                 </subviews>
+                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5eE-b1-IuR">
-                                <rect key="frame" x="0.0" y="107" width="414" height="40"/>
+                                <rect key="frame" x="0.0" y="123" width="414" height="56"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NVu-Cf-RMj">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="SELECCIONE UN PROGRAMA" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NVu-Cf-RMj">
+                                        <rect key="frame" x="8" y="8" width="358" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UVu-h0-FbT">
-                                        <rect key="frame" x="374" y="0.0" width="40" height="40"/>
+                                        <rect key="frame" x="366" y="8" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="crl-4F-Kxz"/>
                                             <constraint firstAttribute="width" constant="40" id="sw5-qX-6Ml"/>
@@ -268,8 +274,12 @@
                                         <state key="normal" image="plus" catalog="system">
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnShowModalProgramas:" destination="Xff-ix-dgg" eventType="touchUpInside" id="1cE-Kb-2VE"/>
+                                        </connections>
                                     </button>
                                 </subviews>
+                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -286,6 +296,7 @@
                             <constraint firstItem="5eE-b1-IuR" firstAttribute="leading" secondItem="CrX-ZT-KFf" secondAttribute="leading" id="qXq-Z0-wxk"/>
                             <constraint firstItem="q58-Cm-ogv" firstAttribute="top" secondItem="CrX-ZT-KFf" secondAttribute="top" constant="10" id="sGL-mV-D6D"/>
                         </constraints>
+                        <edgeInsets key="layoutMargins" top="0.0" left="20" bottom="0.0" right="20"/>
                         <viewLayoutGuide key="safeArea" id="CrX-ZT-KFf"/>
                     </view>
                     <navigationItem key="navigationItem" id="YnU-pH-7SQ"/>

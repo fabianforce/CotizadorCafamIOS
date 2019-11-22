@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 
-class MenuViewController: UIViewController,PopupDeleget {
+class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDelegetPrograma {
     
     var tableView:UITableView!
     var button:UIButton!
@@ -27,95 +27,118 @@ class MenuViewController: UIViewController,PopupDeleget {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       /*
-        var stackedInfoView: UIStackView!
-        // show the items in table.
-        // when touch the button, get json data and save items. and then show it.
-        let frame: CGRect = CGRect(x: 0, y: 100, width: self.view.frame.width, height: 100)
-        self.tableView = UITableView(frame: frame)
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        self.view.addSubview(self.tableView)
+        /*
+         var stackedInfoView: UIStackView!
+         // show the items in table.
+         // when touch the button, get json data and save items. and then show it.
+         let frame: CGRect = CGRect(x: 0, y: 100, width: self.view.frame.width, height: 100)
+         self.tableView = UITableView(frame: frame)
+         self.tableView.dataSource = self
+         self.tableView.delegate = self
+         self.view.addSubview(self.tableView)
+         
+         self.button = UIButton(frame: CGRect(x: 0, y:300, width: self.view.frame.width, height: 50))
+         self.button.backgroundColor = UIColor.cyan
+         self.button.setTitle("Add new Dummy", for: UIControl.State.normal)
+         //self.button.addTarget(self, action: #selector(self.addDummyData), for: UIControl.Event.touchUpInside)
+         self.button.addTarget(self, action: #selector(addDummyData(_:)), for: .touchUpInside)
+         self.view.addSubview(self.button)
+         
+         stackedInfoView = UIStackView(arrangedSubviews: [self.button, self.tableView])
+         stackedInfoView.axis = .horizontal
+         stackedInfoView.spacing = 3.0
+         stackedInfoView.translatesAutoresizingMaskIntoConstraints = false
+         self.view.addSubview(stackedInfoView);
+         
+         
+         stackedInfoView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+         stackedInfoView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+         
+         */
         
-        self.button = UIButton(frame: CGRect(x: 0, y:300, width: self.view.frame.width, height: 50))
-        self.button.backgroundColor = UIColor.cyan
-        self.button.setTitle("Add new Dummy", for: UIControl.State.normal)
-        //self.button.addTarget(self, action: #selector(self.addDummyData), for: UIControl.Event.touchUpInside)
-        self.button.addTarget(self, action: #selector(addDummyData(_:)), for: .touchUpInside)
-        self.view.addSubview(self.button)
-
-     stackedInfoView = UIStackView(arrangedSubviews: [self.button, self.tableView])
-     stackedInfoView.axis = .horizontal
-     stackedInfoView.spacing = 3.0
-     stackedInfoView.translatesAutoresizingMaskIntoConstraints = false
-     self.view.addSubview(stackedInfoView);
         
-
-        stackedInfoView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        stackedInfoView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-
-        */
-
-
     }
     func closeTapped() {
-           self.dismissPopupViewController(animationType: SLpopupViewAnimationType.Fade)
+        self.dismissPopupViewController(animationType: SLpopupViewAnimationType.Fade)
     }
     
     
     @IBAction func btnOpenModalPorgramas(_ sender: Any) {
-     
+        
         var MYpopupView:AlertInfraViewController!
-               MYpopupView = AlertInfraViewController(nibName:"AlertInfraViewController", bundle: nil)
-               self.view.alpha = 1.0
-               MYpopupView.closePopup = self
-               self.presentpopupViewController(popupViewController: MYpopupView, animationType: .BottomTop, completion: {() -> Void in
-               })
-
+        MYpopupView = AlertInfraViewController(nibName:"AlertInfraViewController", bundle: nil)
+        self.view.alpha = 1.0
+        MYpopupView.closePopup = self
+        self.presentpopupViewController(popupViewController: MYpopupView, animationType: .BottomTop, completion: {() -> Void in
+        })
+        
         //self.present
         
     }
     
+    
+    @IBAction func btnOpenModalInfra(_ sender: Any) {
+        
+        var MYpopupView:AlertEjeViewController!
+        MYpopupView = AlertEjeViewController(nibName:"AlertEjeViewController", bundle: nil)
+        self.view.alpha = 1.0
+        MYpopupView.closePopup = self
+        self.presentpopupViewController(popupViewController: MYpopupView, animationType: .BottomTop, completion: {() -> Void in
+        })
+    }
+    
+    @IBAction func btnShowModalProgramas(_ sender: Any) {
+    
+        var MYpopupView:AlertProgramaViewController!
+           MYpopupView = AlertProgramaViewController(nibName:"AlertProgramaViewController", bundle: nil)
+           self.view.alpha = 1.0
+           MYpopupView.closePopup = self
+           self.presentpopupViewController(popupViewController: MYpopupView, animationType: .BottomTop, completion: {() -> Void in
+           })
+    
+    }
+    
+    
     @objc func addDummyData(_ sender: UIButton) {
-       /* RestApiManager.sharedInstance.getProgramas { (json:JSON) in
-            // return json from API
-            if let results = json["results"].array { // get results data from json
-                print(results)
-                for entry in results { // save data to items.
-                    self.items.append(InfraestructuraObject(json: entry))
-                }
-                
-                DispatchQueue.main.async { // back to the main que and reload table
-                    self.tableView.reloadData()
-                }
-            }
-        }*/
+        /* RestApiManager.sharedInstance.getProgramas { (json:JSON) in
+         // return json from API
+         if let results = json["results"].array { // get results data from json
+         print(results)
+         for entry in results { // save data to items.
+         self.items.append(InfraestructuraObject(json: entry))
+         }
+         
+         DispatchQueue.main.async { // back to the main que and reload table
+         self.tableView.reloadData()
+         }
+         }
+         }*/
         AF.request(url, method: .post, parameters:  [
-         "apiKey": "58587775f2f54284a4e8b5e92e0b611f",
-         "JSON": "1",
-         "method":"getInfraestructuras"
-         ]).responseJSON {
-         response in
-         switch (response.result) {
-         case .success:
-         //print(response)
-         print("Request: \(String(describing: response.request))")   // original url request
-         print("Response: \(String(describing: response.response))") // http url response
-         print("Result: \(response.result)")
-         let myJson: JSON = JSON(response.value!)
-         print("Result: \(myJson)")
-         self.items.append(InfraestructuraObject(json: myJson))
-         //for entry in json {
-         
-         //self.items.append(InfraestructuraObject(json: entry))
-         //}
-         
-         break
-         case .failure:
-         print(Error.self)
-         }
-         self.tableView.reloadData();
-         }
+            "apiKey": "58587775f2f54284a4e8b5e92e0b611f",
+            "JSON": "1",
+            "method":"getInfraestructuras"
+        ]).responseJSON {
+            response in
+            switch (response.result) {
+            case .success:
+                //print(response)
+                print("Request: \(String(describing: response.request))")   // original url request
+                print("Response: \(String(describing: response.response))") // http url response
+                print("Result: \(response.result)")
+                let myJson: JSON = JSON(response.value!)
+                print("Result: \(myJson)")
+                self.items.append(InfraestructuraObject(json: myJson))
+                //for entry in json {
+                
+                //self.items.append(InfraestructuraObject(json: entry))
+                //}
+                
+                break
+            case .failure:
+                print(Error.self)
+            }
+            self.tableView.reloadData();
+        }
         
     }
     
