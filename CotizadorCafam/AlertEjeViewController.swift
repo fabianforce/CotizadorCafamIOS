@@ -17,7 +17,7 @@ class AlertEjeViewController: UIViewController {
     
     @IBOutlet weak var tableViewPlaces: UITableView!
     var closePopup:PopupDelegetEje?
-    var items = [String]()
+    var items : [InfraestructuraObject] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableViewPlaces.dataSource = self
@@ -31,38 +31,18 @@ class AlertEjeViewController: UIViewController {
             response in
             switch (response.result) {
             case .success:
-                //print(response)
-                //print("Request: \(String(describing: response.request))")   // original url request
-                //print("Response: \(String(describing: response.response))") // http url response
-                //print("Result: \(response.result)")
-                let myJson: JSON = JSON(response.value!)
-                //print("Result: \(myJson)")
                 
                 let json = JSON(response.value!)
                 if let arr = json.arrayObject as? [[String:AnyObject]] {
-                    var myRadio = [String]()
-                    
                     for items in arr{
                         let name = items["Nombre"] as? String
-                        myRadio.append(name!)
-                        self.items.append(name!)
+                        let idInfraestructura = items["IDInfraestructura"] as? String
+                        let infraestructura = InfraestructuraObject(nombre: name!,idInfraestructura : idInfraestructura!)
+                        self.items.append(infraestructura)
                         self.tableViewPlaces.reloadData();
                     }
-                    print(self.items)
-                    //self.radio.append(myRadio)
-                    //self.tableView.reloadData()
-                    
+                    //print(self.items)
                 }
-             
-                //ﬁlet status = json["Nombre"].stringValue
-               // print(json);
-                
-                //self.items.append(InfraestructuraObject(json: myJson))
-                //for entry in json {
-                
-                //self.items.append(InfraestructuraObject(json: entry))
-                //}
-                
                 break
             case .failure:
                 print(Error.self)
@@ -80,24 +60,30 @@ class AlertEjeViewController: UIViewController {
 }
 extension AlertEjeViewController: UITableViewDataSource,UITableViewDelegate
 {
-
-   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return self.items.count
-   }
-   
-   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       var cell = tableView.dequeueReusableCell(withIdentifier: "CELL")
-       if cell == nil {
-           cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "CELL")
-       }
-       let infraestructura = self.items[indexPath.row]
-      /* if let url = NSURL(string: infraestructura.nombre) {
-           if let data = NSData(contentsOf: url as URL) {
-               //cell?.imageView?.image = UIImage(data: data as Data)
-           }
-       }*/
-       cell!.textLabel?.text = self.items[indexPath.row]; //
-       return cell!
-   }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.items.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "CELL")
+        if cell == nil {
+            cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "CELL")
+        }
+        let infraestructura = self.items[indexPath.row]
+        /* if let url = NSURL(string: infraestructura.nombre) {
+         if let data = NSData(contentsOf: url as URL) {
+         //cell?.imageView?.image = UIImage(data: data as Data)
+         }
+         }*/
+        //cell!.textLabel?.text = self.items[indexPath.row]; //
+        cell!.textLabel?.text = infraestructura.nombre
+        return cell!
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.closePopup?.closeTapped()
+        let clickInfraestructura = self.items[indexPath.row]
+        print(clickInfraestructura.idInfraestructura)
+    }
     
 }

@@ -127,7 +127,7 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
                 print("Result: \(response.result)")
                 let myJson: JSON = JSON(response.value!)
                 print("Result: \(myJson)")
-                self.items.append(InfraestructuraObject(json: myJson))
+                //self.items.append(InfraestructuraObject(json: myJson))
                 //for entry in json {
                 
                 //self.items.append(InfraestructuraObject(json: entry))

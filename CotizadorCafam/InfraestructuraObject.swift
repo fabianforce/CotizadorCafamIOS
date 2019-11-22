@@ -18,9 +18,13 @@ class InfraestructuraObject {
     var fechaModificacion:String!;
     var usuarioModificacion:String!
     
-    required init(json: JSON)
+    init(nombre: String)
     {
-      print("hpta",json["Nombre"])
-      nombre = json["Nombre"].string
+        self.nombre = nombre
+    }
+    init(nombre: String, idInfraestructura: String)
+    {
+        self.nombre = nombre
+        self.idInfraestructura = idInfraestructura;
     }
 }

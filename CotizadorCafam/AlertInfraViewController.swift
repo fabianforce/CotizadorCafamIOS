@@ -17,7 +17,7 @@ class AlertInfraViewController: UIViewController {
     // encargada del modal EJES DE FORMACION ME CONFUNDI DE NOMBRE LUEGO CAMBIAR
     @IBOutlet weak var tableViewEjes: UITableView!
     @IBOutlet weak var Button: UIButton!
-    var items = [String]()
+    var items : [InfraestructuraObject] = []
     var closePopup:PopupDeleget?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,6 @@ class AlertInfraViewController: UIViewController {
                 //print("Request: \(String(describing: response.request))")   // original url request
                 //print("Response: \(String(describing: response.response))") // http url response
                 //print("Result: \(response.result)")
-                let myJson: JSON = JSON(response.value!)
                 //print("Result: \(myJson)")
                 
                 let json = JSON(response.value!)
@@ -44,9 +43,11 @@ class AlertInfraViewController: UIViewController {
                     var myRadio = [String]()
                     
                     for items in arr{
+                        print(items)
                         let name = items["Nombre"] as? String
                         myRadio.append(name!)
-                        self.items.append(name!)
+                        let mercury = InfraestructuraObject(nombre: name!)
+                        self.items.append(mercury)
                         self.tableViewEjes.reloadData();
                     }
                     print(self.items)
@@ -54,9 +55,9 @@ class AlertInfraViewController: UIViewController {
                     //self.tableView.reloadData()
                     
                 }
-             
+                
                 //ﬁlet status = json["Nombre"].stringValue
-               // print(json);
+                // print(json);
                 
                 //self.items.append(InfraestructuraObject(json: myJson))
                 //for entry in json {
@@ -81,25 +82,29 @@ class AlertInfraViewController: UIViewController {
 }
 extension AlertInfraViewController: UITableViewDataSource,UITableViewDelegate
 {
-
-   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return self.items.count
-   }
-   
-   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       var cell = tableView.dequeueReusableCell(withIdentifier: "CELL")
-       if cell == nil {
-           cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "CELL")
-       }
-       let infraestructura = self.items[indexPath.row]
-      /* if let url = NSURL(string: infraestructura.nombre) {
-           if let data = NSData(contentsOf: url as URL) {
-               //cell?.imageView?.image = UIImage(data: data as Data)
-           }
-       }*/
-       cell!.textLabel?.text = self.items[indexPath.row]; //
-       return cell!
-   }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.items.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "CELL")
+        if cell == nil {
+            cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "CELL")
+        }
+        let infraestructura = self.items[indexPath.row]
+        /* if let url = NSURL(string: infraestructura.nombre) {
+         if let data = NSData(contentsOf: url as URL) {
+         //cell?.imageView?.image = UIImage(data: data as Data)
+         }
+         }*/
+        cell!.textLabel?.text = infraestructura.nombre //
+        return cell!
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.closePopup?.closeTapped()
+        print("row: \(indexPath.row)")
+    }
     
 }
 
