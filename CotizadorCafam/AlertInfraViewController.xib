@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlertInfraViewController" customModule="CotizadorCafam" customModuleProvider="target">
             <connections>
                 <outlet property="Button" destination="OZZ-xq-szW" id="Fvr-7W-YuY"/>
+                <outlet property="tableViewEjes" destination="oWr-m2-m6W" id="jG8-sJ-yEe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
