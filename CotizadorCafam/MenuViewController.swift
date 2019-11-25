@@ -14,6 +14,7 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
     
     var tableView:UITableView!
     var button:UIButton!
+    @IBOutlet weak var textViewInfra: UITextField!
     
     @IBOutlet weak var btnMostratProgramas: UIButton!
     @IBOutlet var btnShowProgramas: UIView!
@@ -27,42 +28,25 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*
-         var stackedInfoView: UIStackView!
-         // show the items in table.
-         // when touch the button, get json data and save items. and then show it.
-         let frame: CGRect = CGRect(x: 0, y: 100, width: self.view.frame.width, height: 100)
-         self.tableView = UITableView(frame: frame)
-         self.tableView.dataSource = self
-         self.tableView.delegate = self
-         self.view.addSubview(self.tableView)
-         
-         self.button = UIButton(frame: CGRect(x: 0, y:300, width: self.view.frame.width, height: 50))
-         self.button.backgroundColor = UIColor.cyan
-         self.button.setTitle("Add new Dummy", for: UIControl.State.normal)
-         //self.button.addTarget(self, action: #selector(self.addDummyData), for: UIControl.Event.touchUpInside)
-         self.button.addTarget(self, action: #selector(addDummyData(_:)), for: .touchUpInside)
-         self.view.addSubview(self.button)
-         
-         stackedInfoView = UIStackView(arrangedSubviews: [self.button, self.tableView])
-         stackedInfoView.axis = .horizontal
-         stackedInfoView.spacing = 3.0
-         stackedInfoView.translatesAutoresizingMaskIntoConstraints = false
-         self.view.addSubview(stackedInfoView);
-         
-         
-         stackedInfoView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-         stackedInfoView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-         
-         */
-        
         
     }
     func closeTapped() {
         self.dismissPopupViewController(animationType: SLpopupViewAnimationType.Fade)
+        let preferences = UserDefaults.standard
+        print("daio te amo")
+        if preferences.string(forKey: "infra") != nil{
+            let access_token = preferences.string(forKey: "infra")
+            let infraNombre = preferences.string(forKey: "infraNombre")
+            self.textViewInfra.text = infraNombre!
+            //print(preferences.string(forKey: "infraNombre")!)
+        } else {
+            
+            
+        }
+         //print(preferences.string(forKey: "infraNombre")!)
+            
     }
-    
-    
+       
     @IBAction func btnOpenModalPorgramas(_ sender: Any) {
         
         var MYpopupView:AlertInfraViewController!
@@ -75,7 +59,6 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
         //self.present
         
     }
-    
     
     @IBAction func btnOpenModalInfra(_ sender: Any) {
         
@@ -94,9 +77,16 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
            self.view.alpha = 1.0
            MYpopupView.closePopup = self
            self.presentpopupViewController(popupViewController: MYpopupView, animationType: .BottomTop, completion: {() -> Void in
+            print("hola mundo")
            })
-    
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        if (self.isBeingDismissed || self.isMovingFromParent) {
+            print("hola mundo")
+        }
+    }
+    
     
     
     @objc func addDummyData(_ sender: UIButton) {
@@ -122,11 +112,11 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
             switch (response.result) {
             case .success:
                 //print(response)
-                print("Request: \(String(describing: response.request))")   // original url request
-                print("Response: \(String(describing: response.response))") // http url response
-                print("Result: \(response.result)")
-                let myJson: JSON = JSON(response.value!)
-                print("Result: \(myJson)")
+                //print("Request: \(String(describing: response.request))")   // original url request
+                //print("Response: \(String(describing: response.response))") // http url response
+                //print("Result: \(response.result)")
+                //let myJson: JSON = JSON(response.value!)
+                //print("Result: \(myJson)")
                 //self.items.append(InfraestructuraObject(json: myJson))
                 //for entry in json {
                 

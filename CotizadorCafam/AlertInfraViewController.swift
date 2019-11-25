@@ -103,7 +103,7 @@ extension AlertInfraViewController: UITableViewDataSource,UITableViewDelegate
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.closePopup?.closeTapped()
-        print("row: \(indexPath.row)")
+        //print("row: \(indexPath.row)")
     }
     
 }

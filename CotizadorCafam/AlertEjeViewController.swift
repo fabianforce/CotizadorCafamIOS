@@ -81,9 +81,27 @@ extension AlertEjeViewController: UITableViewDataSource,UITableViewDelegate
         return cell!
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.closePopup?.closeTapped()
         let clickInfraestructura = self.items[indexPath.row]
-        print(clickInfraestructura.idInfraestructura)
+        var idInfraestuctura : String!
+        var nombreInfra : String!
+        idInfraestuctura = clickInfraestructura.idInfraestructura;
+        nombreInfra = clickInfraestructura.nombre
+        let preferences = UserDefaults.standard
+        preferences.set(idInfraestuctura, forKey: "infra") //Bool
+        preferences.set(nombreInfra, forKey: "infraNombre") //Bool
+        didSave(preferences: preferences)
+        print(nombreInfra!)
+        self.closePopup?.closeTapped()
+      
+    }
+    
+    // Checking the UserDefaults is saved or not
+    func didSave(preferences: UserDefaults){
+        let didSave = preferences.synchronize()
+        if !didSave{
+            // Couldn't Save
+            print("Preferences could not be saved!")
+        }
     }
     
 }

@@ -303,6 +303,7 @@
                     <connections>
                         <outlet property="btnMostratProgramas" destination="TVl-RA-10S" id="TFx-ps-jD1"/>
                         <outlet property="btnShowProgramas" destination="zqi-IZ-mAi" id="Nsx-ce-KgR"/>
+                        <outlet property="textViewInfra" destination="3b8-RO-Z97" id="a85-O1-0Pc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k3c-vf-Aca" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
