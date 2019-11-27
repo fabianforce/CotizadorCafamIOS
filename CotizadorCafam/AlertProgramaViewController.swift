@@ -23,8 +23,6 @@ class AlertProgramaViewController: UIViewController {
         self.tableViewProgramas.dataSource = self
         self.tableViewProgramas.delegate = self
         let idEje = preferences.string(forKey: "idEje")!
-        print("hola" , idEje)
-        
         let url = "http://3.133.205.205/cafam/webservices/ws.php?request=action"
         AF.request(url, method: .post, parameters:  [
             "apiKey": "58587775f2f54284a4e8b5e92e0b611f",
@@ -94,14 +92,14 @@ extension AlertProgramaViewController: UITableViewDataSource,UITableViewDelegate
         var idPrograma : String!
         
         nombrePrograma = clickPrograma.Nombre;
-        idPrograma = clickPrograma.idPrograma
+        idPrograma = clickPrograma.IDPrograma;
         
         let preferences = UserDefaults.standard
         preferences.set(nombrePrograma, forKey: "nombrePrograma")
-        preferences.set(idPrograma, forKey: "idPrograma")
+        preferences.set(idPrograma, forKey: "IDPrograma")
         //preferences.set(nombreInfra, forKey: "infraNombre") //Bool
         didSave(preferences: preferences)
-        print(nombrePrograma!)
+        print(idPrograma!)
         self.closePopup2?.closeTapped2()
     }
     

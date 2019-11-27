@@ -21,6 +21,7 @@
 		C67B4DC9238D65370016F98D /* ProgramaObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4DC8238D65370016F98D /* ProgramaObject.swift */; };
 		C67C287923844EA20043336A /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67C287823844EA20043336A /* MenuViewController.swift */; };
 		C69275BB238886010065E07D /* ServiceMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69275BA238886010065E07D /* ServiceMenuViewController.swift */; };
+		C6DE529B238EE81E00A50ACD /* ProductoObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DE529A238EE81E00A50ACD /* ProductoObject.swift */; };
 		C6EA18862387481F00B1DA85 /* AlertInfraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EA18842387481F00B1DA85 /* AlertInfraViewController.swift */; };
 		C6EA18872387481F00B1DA85 /* AlertInfraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6EA18852387481F00B1DA85 /* AlertInfraViewController.xib */; };
 		C6EA18892387596B00B1DA85 /* UIVViewController-SLPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EA18882387596B00B1DA85 /* UIVViewController-SLPopup.swift */; };
@@ -73,6 +74,7 @@
 		C67B4DC8238D65370016F98D /* ProgramaObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramaObject.swift; sourceTree = "<group>"; };
 		C67C287823844EA20043336A /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		C69275BA238886010065E07D /* ServiceMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMenuViewController.swift; sourceTree = "<group>"; };
+		C6DE529A238EE81E00A50ACD /* ProductoObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductoObject.swift; sourceTree = "<group>"; };
 		C6EA18842387481F00B1DA85 /* AlertInfraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertInfraViewController.swift; sourceTree = "<group>"; };
 		C6EA18852387481F00B1DA85 /* AlertInfraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertInfraViewController.xib; sourceTree = "<group>"; };
 		C6EA18882387596B00B1DA85 /* UIVViewController-SLPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIVViewController-SLPopup.swift"; path = "../../../Downloads/Custom-Popup-in-swift-4-master/Custom Popup/Custom Popup/UIVViewController-SLPopup.swift"; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				C6EA18882387596B00B1DA85 /* UIVViewController-SLPopup.swift */,
 				C612361C237F067D0021BE95 /* ViewController.swift */,
 				C62182F7238C90D50053C270 /* ejeFormacionObject.swift */,
+				C6DE529A238EE81E00A50ACD /* ProductoObject.swift */,
 				C67B4DC8238D65370016F98D /* ProgramaObject.swift */,
 				C6FFFA4A2385815A00C92344 /* InfraestructuraObject.swift */,
 				C612361E237F067D0021BE95 /* Main.storyboard */,
@@ -381,6 +384,7 @@
 				C612361D237F067D0021BE95 /* ViewController.swift in Sources */,
 				C6EA18902387694D00B1DA85 /* AlertProgramaViewController.swift in Sources */,
 				C6123619237F067D0021BE95 /* AppDelegate.swift in Sources */,
+				C6DE529B238EE81E00A50ACD /* ProductoObject.swift in Sources */,
 				C6EA18862387481F00B1DA85 /* AlertInfraViewController.swift in Sources */,
 				C612361B237F067D0021BE95 /* SceneDelegate.swift in Sources */,
 				C6FFFA4923857AA000C92344 /* RestApiManager.swift in Sources */,

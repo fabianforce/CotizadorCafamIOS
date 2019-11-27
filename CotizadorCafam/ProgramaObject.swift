@@ -9,7 +9,7 @@ import Foundation
 
 class ProgramaObject {
    
-    var idPrograma: String!
+    var IDPrograma: String!
     var Nombre: String!
     
     init(nombre: String)
@@ -19,7 +19,7 @@ class ProgramaObject {
     init(nombre: String, idPrograma: String)
     {
         self.Nombre = nombre
-        self.idPrograma = idPrograma;
+        self.IDPrograma = idPrograma;
     }
 }
 

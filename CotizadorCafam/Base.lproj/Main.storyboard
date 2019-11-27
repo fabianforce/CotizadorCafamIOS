@@ -281,6 +281,10 @@
                                 </subviews>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                             </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7RW-WM-AMZ">
+                                <rect key="frame" x="0.0" y="197" width="414" height="611"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -291,8 +295,12 @@
                             <constraint firstItem="5eE-b1-IuR" firstAttribute="top" secondItem="3b8-RO-Z97" secondAttribute="bottom" constant="10" id="KS7-K6-Y9P"/>
                             <constraint firstItem="CrX-ZT-KFf" firstAttribute="trailing" secondItem="D2c-GY-cPG" secondAttribute="trailing" id="Ora-VV-5dh"/>
                             <constraint firstItem="q58-Cm-ogv" firstAttribute="leading" secondItem="CrX-ZT-KFf" secondAttribute="leading" id="Pbp-P5-TsR"/>
+                            <constraint firstItem="7RW-WM-AMZ" firstAttribute="trailing" secondItem="5eE-b1-IuR" secondAttribute="trailing" id="RSY-bO-eV3"/>
+                            <constraint firstItem="7RW-WM-AMZ" firstAttribute="bottom" secondItem="CrX-ZT-KFf" secondAttribute="bottom" id="adW-EZ-u9k"/>
                             <constraint firstItem="CrX-ZT-KFf" firstAttribute="trailing" secondItem="q58-Cm-ogv" secondAttribute="trailing" id="d4N-NH-YQM"/>
                             <constraint firstItem="CrX-ZT-KFf" firstAttribute="trailing" secondItem="5eE-b1-IuR" secondAttribute="trailing" id="gGB-iu-9Dm"/>
+                            <constraint firstItem="7RW-WM-AMZ" firstAttribute="leading" secondItem="5eE-b1-IuR" secondAttribute="leading" id="ktO-wt-ZG2"/>
+                            <constraint firstItem="7RW-WM-AMZ" firstAttribute="top" secondItem="NVu-Cf-RMj" secondAttribute="bottom" constant="26" id="q3Y-x9-qd9"/>
                             <constraint firstItem="5eE-b1-IuR" firstAttribute="leading" secondItem="CrX-ZT-KFf" secondAttribute="leading" id="qXq-Z0-wxk"/>
                             <constraint firstItem="q58-Cm-ogv" firstAttribute="top" secondItem="CrX-ZT-KFf" secondAttribute="top" constant="10" id="sGL-mV-D6D"/>
                         </constraints>
@@ -303,6 +311,7 @@
                     <connections>
                         <outlet property="btnMostratProgramas" destination="TVl-RA-10S" id="TFx-ps-jD1"/>
                         <outlet property="btnShowProgramas" destination="zqi-IZ-mAi" id="Nsx-ce-KgR"/>
+                        <outlet property="tableViewProductos" destination="7RW-WM-AMZ" id="Ccq-aP-r6p"/>
                         <outlet property="textViewEje" destination="cef-mF-wfY" id="w8n-xl-E7U"/>
                         <outlet property="textViewInfra" destination="3b8-RO-Z97" id="a85-O1-0Pc"/>
                         <outlet property="textViewPrograma" destination="NVu-Cf-RMj" id="810-ht-bI9"/>
@@ -310,7 +319,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k3c-vf-Aca" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4204" y="-425"/>
+            <point key="canvasLocation" x="4202.898550724638" y="-425.22321428571428"/>
         </scene>
         <!--Service Menu View Controller-->
         <scene sceneID="DWL-gn-dpW">
