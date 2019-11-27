@@ -19,13 +19,9 @@ class ProductoObject {
     var icon:String!;
     var Cupos:String!;
     
-    init(nombre: String)
+    init(nombre: String, tarifaAfi: String)
     {
         self.Nombre = nombre
-    }
-    init(nombre: String, IDCuso: Int)
-    {
-        self.Nombre = nombre
-        self.IDCuso = IDCuso
+        self.TarifaAfiiados = tarifaAfi
     }
 }

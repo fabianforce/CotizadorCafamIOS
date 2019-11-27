@@ -28,7 +28,8 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
         super.viewDidLoad()
         self.tableViewProductos.dataSource = self
         self.tableViewProductos.delegate = self
-    
+        self.registerTbaleViewCells()
+        
     }
     func closeTapped() {
         self.dismissPopupViewController(animationType: SLpopupViewAnimationType.Fade)
@@ -88,18 +89,19 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
                             //print(items)
                             let name = items["Nombre"] as? String
                             let idProducto = items["IDCuso"] as? String
+                            let priceAfi = items["TarifaAfiiados"] as? String
                             myRadio.append(name!)
-                            let producto = ProductoObject(nombre: name!)
+                            let producto = ProductoObject(nombre: name!,tarifaAfi: priceAfi!)
                             self.productItems.append(producto)
                             self.tableViewProductos.reloadData();
-                           
+                            
                         }
                     }
                     break
                 case .failure:
                     print(Error.self)
                 }
-               //self.tableViewProductos.reloadData();
+                //self.tableViewProductos.reloadData();
             }
             
         } else {
@@ -128,6 +130,12 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
         MYpopupView.closePopup = self
         self.presentpopupViewController(popupViewController: MYpopupView, animationType: .BottomTop, completion: {() -> Void in
         })
+    }
+    
+    func registerTbaleViewCells()
+    {
+        let textFieldCell = UINib(nibName: "CustomTableViewCell", bundle: nil);
+        self.tableViewProductos.register(textFieldCell, forCellReuseIdentifier: "CustomTableViewCell")
     }
     
     @IBAction func btnShowModalProgramas(_ sender: Any) {
@@ -162,13 +170,22 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "CELL")
         }
+        
+        
+        
         let productos = self.productItems[indexPath.row]
-       
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell") as? CustomTableViewCell
+        {
+            cell.labelNombrePrograma?.text = productos.Nombre
+            cell.labelPrice?.text = productos.TarifaAfiiados
+            return cell
+        }
+        
         /*if let url = NSURL(string: productos.nombre) {
-            if let data = NSData(contentsOf: url as URL) {
-                //cell?.imageView?.image = UIImage(data: data as Data)
-            }
-        }*/
+         if let data = NSData(contentsOf: url as URL) {
+         //cell?.imageView?.image = UIImage(data: data as Data)
+         }
+         }*/
         cell!.textLabel?.text = productos.Nombre
         return cell!
     }

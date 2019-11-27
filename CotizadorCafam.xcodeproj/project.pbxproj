@@ -22,6 +22,8 @@
 		C67C287923844EA20043336A /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67C287823844EA20043336A /* MenuViewController.swift */; };
 		C69275BB238886010065E07D /* ServiceMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69275BA238886010065E07D /* ServiceMenuViewController.swift */; };
 		C6DE529B238EE81E00A50ACD /* ProductoObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DE529A238EE81E00A50ACD /* ProductoObject.swift */; };
+		C6DE52A0238EF9CB00A50ACD /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DE529E238EF9CB00A50ACD /* CustomTableViewCell.swift */; };
+		C6DE52A1238EF9CB00A50ACD /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6DE529F238EF9CB00A50ACD /* CustomTableViewCell.xib */; };
 		C6EA18862387481F00B1DA85 /* AlertInfraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EA18842387481F00B1DA85 /* AlertInfraViewController.swift */; };
 		C6EA18872387481F00B1DA85 /* AlertInfraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6EA18852387481F00B1DA85 /* AlertInfraViewController.xib */; };
 		C6EA18892387596B00B1DA85 /* UIVViewController-SLPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EA18882387596B00B1DA85 /* UIVViewController-SLPopup.swift */; };
@@ -75,6 +77,8 @@
 		C67C287823844EA20043336A /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		C69275BA238886010065E07D /* ServiceMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMenuViewController.swift; sourceTree = "<group>"; };
 		C6DE529A238EE81E00A50ACD /* ProductoObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductoObject.swift; sourceTree = "<group>"; };
+		C6DE529E238EF9CB00A50ACD /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		C6DE529F238EF9CB00A50ACD /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		C6EA18842387481F00B1DA85 /* AlertInfraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertInfraViewController.swift; sourceTree = "<group>"; };
 		C6EA18852387481F00B1DA85 /* AlertInfraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertInfraViewController.xib; sourceTree = "<group>"; };
 		C6EA18882387596B00B1DA85 /* UIVViewController-SLPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIVViewController-SLPopup.swift"; path = "../../../Downloads/Custom-Popup-in-swift-4-master/Custom Popup/Custom Popup/UIVViewController-SLPopup.swift"; sourceTree = "<group>"; };
@@ -178,6 +182,8 @@
 				C6EA188E2387694D00B1DA85 /* AlertProgramaViewController.swift */,
 				C6EA188F2387694D00B1DA85 /* AlertProgramaViewController.xib */,
 				C69275BA238886010065E07D /* ServiceMenuViewController.swift */,
+				C6DE529E238EF9CB00A50ACD /* CustomTableViewCell.swift */,
+				C6DE529F238EF9CB00A50ACD /* CustomTableViewCell.xib */,
 			);
 			path = CotizadorCafam;
 			sourceTree = "<group>";
@@ -307,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6EA18872387481F00B1DA85 /* AlertInfraViewController.xib in Resources */,
+				C6DE52A1238EF9CB00A50ACD /* CustomTableViewCell.xib in Resources */,
 				C6123625237F06820021BE95 /* LaunchScreen.storyboard in Resources */,
 				C6123622237F06820021BE95 /* Assets.xcassets in Resources */,
 				C6123620237F067D0021BE95 /* Main.storyboard in Resources */,
@@ -378,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6DE52A0238EF9CB00A50ACD /* CustomTableViewCell.swift in Sources */,
 				C66D3A762382D34400AB225A /* LoginSoapController.swift in Sources */,
 				C6EA18892387596B00B1DA85 /* UIVViewController-SLPopup.swift in Sources */,
 				C67C287923844EA20043336A /* MenuViewController.swift in Sources */,
