@@ -10,15 +10,15 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 protocol PopupDeleget {
-    func closeTapped()
+    func closeTapped1()
 }
 
 class AlertInfraViewController: UIViewController {
     // encargada del modal EJES DE FORMACION ME CONFUNDI DE NOMBRE LUEGO CAMBIAR
     @IBOutlet weak var tableViewEjes: UITableView!
     @IBOutlet weak var Button: UIButton!
-    var items : [InfraestructuraObject] = []
-    var closePopup:PopupDeleget?
+    var items : [ejeFormacionObject] = []
+    var closePopup1:PopupDeleget?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableViewEjes.dataSource = self
@@ -31,13 +31,7 @@ class AlertInfraViewController: UIViewController {
         ]).responseJSON {
             response in
             switch (response.result) {
-            case .success:
-                //print(response)
-                //print("Request: \(String(describing: response.request))")   // original url request
-                //print("Response: \(String(describing: response.response))") // http url response
-                //print("Result: \(response.result)")
-                //print("Result: \(myJson)")
-                
+            case .success:                
                 let json = JSON(response.value!)
                 if let arr = json.arrayObject as? [[String:AnyObject]] {
                     var myRadio = [String]()
@@ -45,26 +39,14 @@ class AlertInfraViewController: UIViewController {
                     for items in arr{
                         print(items)
                         let name = items["Nombre"] as? String
+                        let idEje = items["IDEjeFormacion"] as? String
                         myRadio.append(name!)
-                        let mercury = InfraestructuraObject(nombre: name!)
+                        let mercury = ejeFormacionObject(nombre: name!,idEjeFormacion: idEje!)
                         self.items.append(mercury)
                         self.tableViewEjes.reloadData();
                     }
                     print(self.items)
-                    //self.radio.append(myRadio)
-                    //self.tableView.reloadData()
-                    
                 }
-                
-                //ﬁlet status = json["Nombre"].stringValue
-                // print(json);
-                
-                //self.items.append(InfraestructuraObject(json: myJson))
-                //for entry in json {
-                
-                //self.items.append(InfraestructuraObject(json: entry))
-                //}
-                
                 break
             case .failure:
                 print(Error.self)
@@ -76,7 +58,7 @@ class AlertInfraViewController: UIViewController {
     
     
     @IBAction func closeModal(_ sender: Any) {
-        self.closePopup?.closeTapped()
+        self.closePopup1?.closeTapped1()
     }
     
 }
@@ -92,18 +74,41 @@ extension AlertInfraViewController: UITableViewDataSource,UITableViewDelegate
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "CELL")
         }
-        let infraestructura = self.items[indexPath.row]
+        let ejeFormacion = self.items[indexPath.row]
         /* if let url = NSURL(string: infraestructura.nombre) {
          if let data = NSData(contentsOf: url as URL) {
          //cell?.imageView?.image = UIImage(data: data as Data)
          }
          }*/
-        cell!.textLabel?.text = infraestructura.nombre //
+        cell!.textLabel?.text = ejeFormacion.nombre //
         return cell!
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.closePopup?.closeTapped()
         //print("row: \(indexPath.row)")
+        let clickEje = self.items[indexPath.row]
+        var nombreEje : String!
+        var nombreInfra : String!
+        var idEje : String!
+        
+        nombreEje = clickEje.nombre;
+        idEje = clickEje.IDEje
+        
+        let preferences = UserDefaults.standard
+        preferences.set(nombreEje, forKey: "ejeNombre")
+        preferences.set(idEje, forKey: "idEje")
+        //preferences.set(nombreInfra, forKey: "infraNombre") //Bool
+        didSave(preferences: preferences)
+        print(nombreEje!)
+        self.closePopup1?.closeTapped1()
+    }
+    
+    // Checking the UserDefaults is saved or not
+    func didSave(preferences: UserDefaults){
+        let didSave = preferences.synchronize()
+        if !didSave{
+            // Couldn't Save
+            print("Preferences could not be saved!")
+        }
     }
     
 }

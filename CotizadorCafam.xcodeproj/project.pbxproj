@@ -15,8 +15,10 @@
 		C6123625237F06820021BE95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6123623237F06820021BE95 /* LaunchScreen.storyboard */; };
 		C6123630237F06830021BE95 /* CotizadorCafamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C612362F237F06830021BE95 /* CotizadorCafamTests.swift */; };
 		C612363B237F06830021BE95 /* CotizadorCafamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C612363A237F06830021BE95 /* CotizadorCafamUITests.swift */; };
+		C62182F8238C90D50053C270 /* ejeFormacionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62182F7238C90D50053C270 /* ejeFormacionObject.swift */; };
 		C66D3A762382D34400AB225A /* LoginSoapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66D3A752382D34400AB225A /* LoginSoapController.swift */; };
 		C66D3A782382E28A00AB225A /* SoapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66D3A772382E28A00AB225A /* SoapViewController.swift */; };
+		C67B4DC9238D65370016F98D /* ProgramaObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4DC8238D65370016F98D /* ProgramaObject.swift */; };
 		C67C287923844EA20043336A /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67C287823844EA20043336A /* MenuViewController.swift */; };
 		C69275BB238886010065E07D /* ServiceMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69275BA238886010065E07D /* ServiceMenuViewController.swift */; };
 		C6EA18862387481F00B1DA85 /* AlertInfraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EA18842387481F00B1DA85 /* AlertInfraViewController.swift */; };
@@ -65,8 +67,10 @@
 		C6123636237F06830021BE95 /* CotizadorCafamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CotizadorCafamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C612363A237F06830021BE95 /* CotizadorCafamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CotizadorCafamUITests.swift; sourceTree = "<group>"; };
 		C612363C237F06830021BE95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C62182F7238C90D50053C270 /* ejeFormacionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ejeFormacionObject.swift; sourceTree = "<group>"; };
 		C66D3A752382D34400AB225A /* LoginSoapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSoapController.swift; sourceTree = "<group>"; };
 		C66D3A772382E28A00AB225A /* SoapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoapViewController.swift; sourceTree = "<group>"; };
+		C67B4DC8238D65370016F98D /* ProgramaObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramaObject.swift; sourceTree = "<group>"; };
 		C67C287823844EA20043336A /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		C69275BA238886010065E07D /* ServiceMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMenuViewController.swift; sourceTree = "<group>"; };
 		C6EA18842387481F00B1DA85 /* AlertInfraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertInfraViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +161,8 @@
 				C66D3A772382E28A00AB225A /* SoapViewController.swift */,
 				C6EA18882387596B00B1DA85 /* UIVViewController-SLPopup.swift */,
 				C612361C237F067D0021BE95 /* ViewController.swift */,
+				C62182F7238C90D50053C270 /* ejeFormacionObject.swift */,
+				C67B4DC8238D65370016F98D /* ProgramaObject.swift */,
 				C6FFFA4A2385815A00C92344 /* InfraestructuraObject.swift */,
 				C612361E237F067D0021BE95 /* Main.storyboard */,
 				C6123621237F06820021BE95 /* Assets.xcassets */,
@@ -379,9 +385,11 @@
 				C612361B237F067D0021BE95 /* SceneDelegate.swift in Sources */,
 				C6FFFA4923857AA000C92344 /* RestApiManager.swift in Sources */,
 				C69275BB238886010065E07D /* ServiceMenuViewController.swift in Sources */,
+				C62182F8238C90D50053C270 /* ejeFormacionObject.swift in Sources */,
 				C66D3A782382E28A00AB225A /* SoapViewController.swift in Sources */,
 				C6EA188C238766DF00B1DA85 /* AlertEjeViewController.swift in Sources */,
 				C6FFFA4B2385815A00C92344 /* InfraestructuraObject.swift in Sources */,
+				C67B4DC9238D65370016F98D /* ProgramaObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

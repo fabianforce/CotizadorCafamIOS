@@ -9,6 +9,7 @@
 import Foundation
 import SwiftyJSON
 
+
 class InfraestructuraObject {
     var idInfraestructura: String!
     var idGeografia: Int!

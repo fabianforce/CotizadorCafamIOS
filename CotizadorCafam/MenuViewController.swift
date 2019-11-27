@@ -15,10 +15,13 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
     var tableView:UITableView!
     var button:UIButton!
     @IBOutlet weak var textViewInfra: UITextField!
-    
+    @IBOutlet weak var textViewEje: UITextField!
+    @IBOutlet weak var textViewPrograma: UITextField!
     @IBOutlet weak var btnMostratProgramas: UIButton!
     @IBOutlet var btnShowProgramas: UIView!
     var items = [InfraestructuraObject]()
+    var idEje = "";
+    var idPrograma = ""
     let parameters = [
         "apiKey": "58587775f2f54284a4e8b5e92e0b611f",
         "JSON": "1",
@@ -46,13 +49,40 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
          //print(preferences.string(forKey: "infraNombre")!)
             
     }
+    func closeTapped1() {
+        self.dismissPopupViewController(animationType: SLpopupViewAnimationType.Fade)
+        let preferences = UserDefaults.standard
+        print("daio te amo")
+        if preferences.string(forKey: "ejeNombre") != nil{
+             let ejeNombre = preferences.string(forKey: "ejeNombre")
+             idEje = preferences.string(forKey: "idEje")!
+             self.textViewEje.text = ejeNombre!
+            //print(preferences.string(forKey: "infraNombre")!)
+        } else {
+            
+        }
+    }
+    //** programas alert **/
+    func closeTapped2() {
+          self.dismissPopupViewController(animationType: SLpopupViewAnimationType.Fade)
+          let preferences = UserDefaults.standard
+          print("daio te amo")
+          if preferences.string(forKey: "nombrePrograma") != nil{
+               let programaNombre = preferences.string(forKey: "nombrePrograma")
+               idPrograma = preferences.string(forKey: "idPrograma")!
+               self.textViewPrograma.text = programaNombre!
+              //print(preferences.string(forKey: "infraNombre")!)
+          } else {
+              
+          }
+      }
        
     @IBAction func btnOpenModalPorgramas(_ sender: Any) {
-        
+        //EJES DE FORMACION
         var MYpopupView:AlertInfraViewController!
         MYpopupView = AlertInfraViewController(nibName:"AlertInfraViewController", bundle: nil)
         self.view.alpha = 1.0
-        MYpopupView.closePopup = self
+        MYpopupView.closePopup1 = self
         self.presentpopupViewController(popupViewController: MYpopupView, animationType: .BottomTop, completion: {() -> Void in
         })
         
@@ -72,10 +102,11 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
     
     @IBAction func btnShowModalProgramas(_ sender: Any) {
     
+        print(idEje)
         var MYpopupView:AlertProgramaViewController!
            MYpopupView = AlertProgramaViewController(nibName:"AlertProgramaViewController", bundle: nil)
            self.view.alpha = 1.0
-           MYpopupView.closePopup = self
+           MYpopupView.closePopup2 = self
            self.presentpopupViewController(popupViewController: MYpopupView, animationType: .BottomTop, completion: {() -> Void in
             print("hola mundo")
            })

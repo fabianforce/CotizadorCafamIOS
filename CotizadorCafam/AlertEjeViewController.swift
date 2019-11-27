@@ -71,12 +71,7 @@ extension AlertEjeViewController: UITableViewDataSource,UITableViewDelegate
             cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "CELL")
         }
         let infraestructura = self.items[indexPath.row]
-        /* if let url = NSURL(string: infraestructura.nombre) {
-         if let data = NSData(contentsOf: url as URL) {
-         //cell?.imageView?.image = UIImage(data: data as Data)
-         }
-         }*/
-        //cell!.textLabel?.text = self.items[indexPath.row]; //
+       
         cell!.textLabel?.text = infraestructura.nombre
         return cell!
     }
