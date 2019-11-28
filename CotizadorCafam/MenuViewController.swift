@@ -10,7 +10,8 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 
-class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDelegetPrograma {
+class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDelegetPrograma,PopupDelegetProductos {
+    
     
     var tableView:UITableView!
     @IBOutlet weak var tableViewProductos: UITableView!
@@ -90,8 +91,11 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
                             let name = items["Nombre"] as? String
                             let idProducto = items["IDCuso"] as? String
                             let priceAfi = items["TarifaAfiiados"] as? String
+                            let descripcion = items["Descripcion"] as? String
+                            let horasPro = items["Horas"] as? String
+                            let cupoPro = items["Cupos"] as? String
                             myRadio.append(name!)
-                            let producto = ProductoObject(nombre: name!,tarifaAfi: priceAfi!)
+                            let producto = ProductoObject(nombre: name!,tarifaAfi: priceAfi!,descripcion: descripcion!,horas: horasPro!,cupos: cupoPro!)
                             self.productItems.append(producto)
                             self.tableViewProductos.reloadData();
                             
@@ -119,6 +123,13 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
         })
         
         //self.present
+        
+    }
+    
+    
+    func closeTappedProductos()
+    {
+        self.dismissPopupViewController(animationType: SLpopupViewAnimationType.Fade)
         
     }
     
@@ -171,8 +182,6 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
             cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "CELL")
         }
         
-        
-        
         let productos = self.productItems[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell") as? CustomTableViewCell
         {
@@ -189,4 +198,43 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
         cell!.textLabel?.text = productos.Nombre
         return cell!
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //print("row: \(indexPath.row)")
+        let clickPrograma = self.productItems[indexPath.row]
+        var nombrePrograma : String!
+        var idPrograma : String!
+        var descripcion:String!
+        descripcion = clickPrograma.Descripcion
+        nombrePrograma = clickPrograma.Nombre;
+        
+        var people = [ProductoObject]()
+        people.append(ProductoObject(nombre: nombrePrograma,tarifaAfi: "fernando",descripcion: descripcion,horas: "dsa",cupos: "dasd"))
+        let placesData = NSKeyedArchiver.archivedData(withRootObject: people)
+        UserDefaults.standard.set(placesData, forKey: "detalleProducto")
+        
+        var MYpopupView:AlertInfoProgramaViewController!
+        MYpopupView = AlertInfoProgramaViewController(nibName:"AlertInfoProgramaViewController", bundle: nil)
+        self.view.alpha = 1.0
+        MYpopupView.closePopupProductos = self
+        self.presentpopupViewController(popupViewController: MYpopupView, animationType: .BottomTop, completion: {() -> Void in
+        })
+        
+        //preferences.set(people, forKey: "detalleProducto")
+        //preferences.set(idPrograma, forKey: "IDPrograma")
+        //preferences.set(nombreInfra, forKey: "infraNombre") //Bool
+        //didSave(preferences: preferences)
+        print(nombrePrograma!)
+        //self.closePopup2?.closeTapped2()
+    }
+    
+    // Checking the UserDefaults is saved or not
+    func didSave(preferences: UserDefaults){
+        let didSave = preferences.synchronize()
+        if !didSave{
+            // Couldn't Save
+            print("Preferences could not be saved!")
+        }
+    }
+    
 }
