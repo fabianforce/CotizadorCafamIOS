@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 
-class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDelegetPrograma,PopupDelegetProductos {
+class MenuViewController: BaseViewController,PopupDeleget,PopupDelegetEje,PopupDelegetPrograma,PopupDelegetProductos {
     
     
     var tableView:UITableView!
@@ -30,6 +30,7 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
         self.tableViewProductos.dataSource = self
         self.tableViewProductos.delegate = self
         self.registerTbaleViewCells()
+        addSlideMenuButton()
         
     }
     func closeTapped() {

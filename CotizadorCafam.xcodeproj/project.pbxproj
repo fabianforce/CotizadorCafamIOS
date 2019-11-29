@@ -16,6 +16,8 @@
 		C6123630237F06830021BE95 /* CotizadorCafamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C612362F237F06830021BE95 /* CotizadorCafamTests.swift */; };
 		C612363B237F06830021BE95 /* CotizadorCafamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C612363A237F06830021BE95 /* CotizadorCafamUITests.swift */; };
 		C62182F8238C90D50053C270 /* ejeFormacionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62182F7238C90D50053C270 /* ejeFormacionObject.swift */; };
+		C6639B772391738A00DAD1FA /* SliderMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6639B762391738A00DAD1FA /* SliderMenuViewController.swift */; };
+		C6639B792391777700DAD1FA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6639B782391777700DAD1FA /* BaseViewController.swift */; };
 		C66D3A762382D34400AB225A /* LoginSoapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66D3A752382D34400AB225A /* LoginSoapController.swift */; };
 		C66D3A782382E28A00AB225A /* SoapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66D3A772382E28A00AB225A /* SoapViewController.swift */; };
 		C67B4DC9238D65370016F98D /* ProgramaObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67B4DC8238D65370016F98D /* ProgramaObject.swift */; };
@@ -73,6 +75,8 @@
 		C612363A237F06830021BE95 /* CotizadorCafamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CotizadorCafamUITests.swift; sourceTree = "<group>"; };
 		C612363C237F06830021BE95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C62182F7238C90D50053C270 /* ejeFormacionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ejeFormacionObject.swift; sourceTree = "<group>"; };
+		C6639B762391738A00DAD1FA /* SliderMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderMenuViewController.swift; sourceTree = "<group>"; };
+		C6639B782391777700DAD1FA /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = "../../../Downloads/AKSwiftSlideMenu-master/AKSwiftSlideMenu/BaseViewController.swift"; sourceTree = "<group>"; };
 		C66D3A752382D34400AB225A /* LoginSoapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSoapController.swift; sourceTree = "<group>"; };
 		C66D3A772382E28A00AB225A /* SoapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoapViewController.swift; sourceTree = "<group>"; };
 		C67B4DC8238D65370016F98D /* ProgramaObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramaObject.swift; sourceTree = "<group>"; };
@@ -164,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				C6123618237F067D0021BE95 /* AppDelegate.swift */,
+				C6639B782391777700DAD1FA /* BaseViewController.swift */,
 				C66D3A752382D34400AB225A /* LoginSoapController.swift */,
 				C612361A237F067D0021BE95 /* SceneDelegate.swift */,
 				C6FFFA4823857AA000C92344 /* RestApiManager.swift */,
@@ -176,6 +181,7 @@
 				C67B4DC8238D65370016F98D /* ProgramaObject.swift */,
 				C6FFFA4A2385815A00C92344 /* InfraestructuraObject.swift */,
 				C612361E237F067D0021BE95 /* Main.storyboard */,
+				C6639B762391738A00DAD1FA /* SliderMenuViewController.swift */,
 				C6123621237F06820021BE95 /* Assets.xcassets */,
 				C6123623237F06820021BE95 /* LaunchScreen.storyboard */,
 				C6123626237F06820021BE95 /* Info.plist */,
@@ -397,6 +403,7 @@
 				C6EA18892387596B00B1DA85 /* UIVViewController-SLPopup.swift in Sources */,
 				C67C287923844EA20043336A /* MenuViewController.swift in Sources */,
 				C6892FD1239001D300AA86B4 /* AlertInfoProgramaViewController.swift in Sources */,
+				C6639B792391777700DAD1FA /* BaseViewController.swift in Sources */,
 				C612361D237F067D0021BE95 /* ViewController.swift in Sources */,
 				C6EA18902387694D00B1DA85 /* AlertProgramaViewController.swift in Sources */,
 				C6123619237F067D0021BE95 /* AppDelegate.swift in Sources */,
@@ -405,6 +412,7 @@
 				C612361B237F067D0021BE95 /* SceneDelegate.swift in Sources */,
 				C6FFFA4923857AA000C92344 /* RestApiManager.swift in Sources */,
 				C69275BB238886010065E07D /* ServiceMenuViewController.swift in Sources */,
+				C6639B772391738A00DAD1FA /* SliderMenuViewController.swift in Sources */,
 				C62182F8238C90D50053C270 /* ejeFormacionObject.swift in Sources */,
 				C66D3A782382E28A00AB225A /* SoapViewController.swift in Sources */,
 				C6EA188C238766DF00B1DA85 /* AlertEjeViewController.swift in Sources */,
