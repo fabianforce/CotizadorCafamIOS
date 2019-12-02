@@ -18,10 +18,22 @@ class SliderMenuViewController: UIViewController {
     @IBOutlet weak var btnClose: UIButton!
     @IBOutlet weak var labelTotal: UILabel!
     @IBOutlet weak var tableViewCart: UITableView!
+    @IBOutlet weak var btnEnviarCoti: UIButton!
+    @IBOutlet weak var btnMasOpciones: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableViewCart.dataSource = self
         self.tableViewCart.delegate = self
+        self.registerTbaleViewCells()
+        self.btnEnviarCoti.backgroundColor = .clear
+        self.btnEnviarCoti.layer.cornerRadius = 5
+        self.btnEnviarCoti.layer.borderWidth = 1
+        self.btnEnviarCoti.layer.borderColor = UIColor.green.cgColor
+        
+        self.btnMasOpciones.backgroundColor = .clear
+        self.btnMasOpciones.layer.cornerRadius = 5
+        self.btnMasOpciones.layer.borderWidth = 1
+        self.btnMasOpciones.layer.borderColor = UIColor.green.cgColor
         //print("hola perra")
         let preferences = UserDefaults.standard
         let total = preferences.string(forKey: "totalCart")
@@ -42,7 +54,7 @@ class SliderMenuViewController: UIViewController {
             //self.textViewNombreProduct.text = producto.Nombre!
             //self.textViewDetalle.text = producto.Descripcion!
         }
-         print("entro",productCartItems.count)
+        print("entro",productCartItems.count)
         
         // Do any additional setup after loading the view.
     }
@@ -70,6 +82,12 @@ class SliderMenuViewController: UIViewController {
         })
     }
     
+    func registerTbaleViewCells()
+    {
+        let textFieldCell = UINib(nibName: "CartTableViewCell", bundle: nil);
+        self.tableViewCart.register(textFieldCell, forCellReuseIdentifier: "CartTableViewCell")
+    }
+    
     
 }
 extension SliderMenuViewController: UITableViewDataSource,UITableViewDelegate
@@ -84,17 +102,25 @@ extension SliderMenuViewController: UITableViewDataSource,UITableViewDelegate
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "CELL")
         }
-        let ejeFormacion = self.productCartItems1[indexPath.row]
-                   //self.textViewNombreProduct.text = producto.Nombre!
-                   //self.textViewDetalle.text = producto.Descripcion!
-           
+        let productos = self.productCartItems1[indexPath.row]
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "CartTableViewCell") as? CartTableViewCell
+        {
+            cell.labelProductName?.text = productos.name!
+            //cell.labelPrice?.text = productos.TarifaAfiiados
+            //cell.btn_mas?.tag = indexPath.row
+            //cell.btn_mas?.addTarget(self, action: #selector(btnAgregarMas), for: .touchUpInside)
+            return cell
+        }
+        //self.textViewNombreProduct.text = producto.Nombre!
+        //self.textViewDetalle.text = producto.Descripcion!
+        
         
         /* if let url = NSURL(string: infraestructura.nombre) {
          if let data = NSData(contentsOf: url as URL) {
          //cell?.imageView?.image = UIImage(data: data as Data)
          }
          }*/
-        cell!.textLabel?.text = ejeFormacion.name //
+        cell!.textLabel?.text = productos.name //
         return cell!
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

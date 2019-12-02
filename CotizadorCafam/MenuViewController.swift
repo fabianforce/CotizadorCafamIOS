@@ -26,6 +26,7 @@ class MenuViewController: BaseViewController,PopupDeleget,PopupDelegetEje,PopupD
     var productItems : [ProductoObject] = []
     var cartItems: [CartItem] = []
     var total = 0;
+    var exite = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -211,7 +212,45 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
         let preferences = UserDefaults.standard
         preferences.set(total, forKey: "totalCart")
         let objetCartItem = CartItem(name: productos.Nombre!,price: 1,quantity: total,unitVal: "")
-        cartItems.append(objetCartItem)
+        
+        if cartItems.count == 0 {
+            print("vacio")
+            cartItems.append(objetCartItem)
+        }else
+        {
+            for (index, element) in cartItems.enumerated() {
+                print(index, ":", element)
+                if(cartItems[index].name! == productos.Nombre!)
+                {
+                    //print("ESTA")
+                    exite = true;
+                }else
+                {
+                    //print("NO ESTA")
+                    exite = false;
+                }
+            }
+            /*for item in cartItems {
+             print("DIOSITO",item.name! + "igual a =>" + productos.Nombre!);
+             if item.name!.elementsEqual(productos.Nombre!) {
+             print("YES");
+             }else
+             {
+             //cartItems.append(objetCartItem)
+             }
+             }*/
+        }
+        if (exite)
+        {
+             print("EXISTE")
+            let objetCartItem = CartItem(name: "PERRA",price: 1,quantity: total,unitVal: "")
+            cartItems[1] = objetCartItem
+           
+        }else
+        {
+            cartItems.append(objetCartItem)
+        }
+        
         print(cartItems.count)
         let sendCartItems = NSKeyedArchiver.archivedData(withRootObject: cartItems)
         UserDefaults.standard.set(sendCartItems, forKey: "cartProduct")
