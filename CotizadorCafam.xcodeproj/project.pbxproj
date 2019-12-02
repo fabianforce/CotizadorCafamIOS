@@ -16,6 +16,7 @@
 		C6123630237F06830021BE95 /* CotizadorCafamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C612362F237F06830021BE95 /* CotizadorCafamTests.swift */; };
 		C612363B237F06830021BE95 /* CotizadorCafamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C612363A237F06830021BE95 /* CotizadorCafamUITests.swift */; };
 		C62182F8238C90D50053C270 /* ejeFormacionObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62182F7238C90D50053C270 /* ejeFormacionObject.swift */; };
+		C6621FEA239549710032DC55 /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6621FE9239549710032DC55 /* CartItem.swift */; };
 		C6639B772391738A00DAD1FA /* SliderMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6639B762391738A00DAD1FA /* SliderMenuViewController.swift */; };
 		C6639B792391777700DAD1FA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6639B782391777700DAD1FA /* BaseViewController.swift */; };
 		C66D3A762382D34400AB225A /* LoginSoapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66D3A752382D34400AB225A /* LoginSoapController.swift */; };
@@ -75,6 +76,7 @@
 		C612363A237F06830021BE95 /* CotizadorCafamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CotizadorCafamUITests.swift; sourceTree = "<group>"; };
 		C612363C237F06830021BE95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C62182F7238C90D50053C270 /* ejeFormacionObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ejeFormacionObject.swift; sourceTree = "<group>"; };
+		C6621FE9239549710032DC55 /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; };
 		C6639B762391738A00DAD1FA /* SliderMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderMenuViewController.swift; sourceTree = "<group>"; };
 		C6639B782391777700DAD1FA /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = "../../../Downloads/AKSwiftSlideMenu-master/AKSwiftSlideMenu/BaseViewController.swift"; sourceTree = "<group>"; };
 		C66D3A752382D34400AB225A /* LoginSoapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSoapController.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				C6EA18882387596B00B1DA85 /* UIVViewController-SLPopup.swift */,
 				C612361C237F067D0021BE95 /* ViewController.swift */,
 				C62182F7238C90D50053C270 /* ejeFormacionObject.swift */,
+				C6621FE9239549710032DC55 /* CartItem.swift */,
 				C6DE529A238EE81E00A50ACD /* ProductoObject.swift */,
 				C67B4DC8238D65370016F98D /* ProgramaObject.swift */,
 				C6FFFA4A2385815A00C92344 /* InfraestructuraObject.swift */,
@@ -411,6 +414,7 @@
 				C6EA18862387481F00B1DA85 /* AlertInfraViewController.swift in Sources */,
 				C612361B237F067D0021BE95 /* SceneDelegate.swift in Sources */,
 				C6FFFA4923857AA000C92344 /* RestApiManager.swift in Sources */,
+				C6621FEA239549710032DC55 /* CartItem.swift in Sources */,
 				C69275BB238886010065E07D /* ServiceMenuViewController.swift in Sources */,
 				C6639B772391738A00DAD1FA /* SliderMenuViewController.swift in Sources */,
 				C62182F8238C90D50053C270 /* ejeFormacionObject.swift in Sources */,

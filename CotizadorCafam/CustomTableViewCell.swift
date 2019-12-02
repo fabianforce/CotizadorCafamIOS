@@ -12,6 +12,8 @@ class CustomTableViewCell: UITableViewCell {
 
     @IBOutlet weak var labelNombrePrograma: UILabel!
     @IBOutlet weak var labelPrice: UILabel!
+    @IBOutlet weak var btn_mas: UIButton!
+    @IBOutlet weak var btn_mes: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

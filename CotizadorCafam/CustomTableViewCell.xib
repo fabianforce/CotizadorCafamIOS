@@ -85,6 +85,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="btn_mas" destination="CSn-oq-aqR" id="vqb-DY-xNn"/>
+                <outlet property="btn_mes" destination="lyo-pR-fF8" id="kjd-aX-a2d"/>
                 <outlet property="labelNombrePrograma" destination="vHD-5o-fvG" id="Wcx-Lp-atb"/>
                 <outlet property="labelPrice" destination="oSN-Me-y5j" id="eej-KM-eGh"/>
             </connections>

@@ -24,6 +24,8 @@ class MenuViewController: BaseViewController,PopupDeleget,PopupDelegetEje,PopupD
     var idEje = "";
     var idPrograma = ""
     var productItems : [ProductoObject] = []
+    var cartItems: [CartItem] = []
+    var total = 0;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +48,7 @@ class MenuViewController: BaseViewController,PopupDeleget,PopupDelegetEje,PopupD
             
             
         }
+        
         //print(preferences.string(forKey: "infraNombre")!)
         
     }
@@ -188,6 +191,8 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
         {
             cell.labelNombrePrograma?.text = productos.Nombre
             cell.labelPrice?.text = productos.TarifaAfiiados
+            cell.btn_mas?.tag = indexPath.row
+            cell.btn_mas?.addTarget(self, action: #selector(btnAgregarMas), for: .touchUpInside)
             return cell
         }
         
@@ -198,6 +203,19 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
          }*/
         cell!.textLabel?.text = productos.Nombre
         return cell!
+    }
+    @objc func btnAgregarMas(_ sender: UIButton) {
+        let productos = self.productItems[sender.tag]
+        let tarifaAfiliados = (productos.TarifaAfiiados as NSString).integerValue
+        total = total + tarifaAfiliados;
+        let preferences = UserDefaults.standard
+        preferences.set(total, forKey: "totalCart")
+        let objetCartItem = CartItem(name: productos.Nombre!,price: 1,quantity: total,unitVal: "")
+        cartItems.append(objetCartItem)
+        print(cartItems.count)
+        let sendCartItems = NSKeyedArchiver.archivedData(withRootObject: cartItems)
+        UserDefaults.standard.set(sendCartItems, forKey: "cartProduct")
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -210,6 +228,7 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
         nombrePrograma = clickPrograma.Nombre;
         
         var people = [ProductoObject]()
+        //pasar informacion real
         people.append(ProductoObject(nombre: nombrePrograma,tarifaAfi: "fernando",descripcion: descripcion,horas: "dsa",cupos: "dasd"))
         let placesData = NSKeyedArchiver.archivedData(withRootObject: people)
         UserDefaults.standard.set(placesData, forKey: "detalleProducto")
