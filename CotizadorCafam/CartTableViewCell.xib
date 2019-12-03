@@ -73,7 +73,7 @@
                                             <constraint firstAttribute="width" constant="25" id="bi2-b7-cZs"/>
                                             <constraint firstAttribute="height" constant="25" id="obg-QM-irF"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="highlightedColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </label>
@@ -140,6 +140,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="labelCount" destination="Plf-Fm-2mp" id="fRD-ff-uBW"/>
+                <outlet property="labelImporte" destination="ZZs-cc-jYa" id="xfE-Zz-jDD"/>
                 <outlet property="labelPriceProducto" destination="cIh-ml-CLZ" id="4hm-02-RRb"/>
                 <outlet property="labelProductName" destination="kXG-fc-4OC" id="K3g-V2-56j"/>
             </connections>

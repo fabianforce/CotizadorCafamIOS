@@ -26,6 +26,9 @@ class MenuViewController: BaseViewController,PopupDeleget,PopupDelegetEje,PopupD
     var productItems : [ProductoObject] = []
     var cartItems: [CartItem] = []
     var total = 0;
+    var productTotal = 0.0;
+    var quantityByProduct = 0;
+    
     var exite = false
     
     override func viewDidLoad() {
@@ -94,13 +97,14 @@ class MenuViewController: BaseViewController,PopupDeleget,PopupDelegetEje,PopupD
                         for items in arr{
                             //print(items)
                             let name = items["Nombre"] as? String
-                            let idProducto = items["IDCuso"] as? String
+                            let idProducto1 = items["IDCuso"] as? String
+                            print(idProducto1)
                             let priceAfi = items["TarifaAfiiados"] as? String
                             let descripcion = items["Descripcion"] as? String
                             let horasPro = items["Horas"] as? String
                             let cupoPro = items["Cupos"] as? String
                             myRadio.append(name!)
-                            let producto = ProductoObject(nombre: name!,tarifaAfi: priceAfi!,descripcion: descripcion!,horas: horasPro!,cupos: cupoPro!)
+                            let producto = ProductoObject(nombre: name!,tarifaAfi: priceAfi!,descripcion: descripcion!,horas: horasPro!,cupos: cupoPro!,IDCuso:idProducto1!)
                             self.productItems.append(producto)
                             self.tableViewProductos.reloadData();
                             
@@ -220,51 +224,40 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
         total = total + tarifaAfiliados;
         let preferences = UserDefaults.standard
         preferences.set(total, forKey: "totalCart")
-        let objetCartItem = CartItem(name: productos.Nombre!,price: 1,quantity: total,unitVal:productos.TarifaAfiiados!)
-        
-        if cartItems.count == 0 {
-            print("vacio")
-            cartItems.append(objetCartItem)
-        }else
-        {
+        productTotal = (productos.TarifaAfiiados as NSString).doubleValue
+        print("FERNANDO",productos.IDCuso!)
+        if cartItems.count > 0 {
+            //productTotal = 0;
             for (index, element) in cartItems.enumerated() {
-                print(index, ":", element)
-                if(cartItems[index].name! == productos.Nombre!)
+                print(index, ":", cartItems[index].productId!)
+                if(cartItems[index].productId! == productos.IDCuso!)
                 {
                     //print("ESTA")
                     exite = true;
                     indice = index
-                }else
-                {
-                    //print("NO ESTA")
-                    exite = false;
                 }
             }
-            /*for item in cartItems {
-             print("DIOSITO",item.name! + "igual a =>" + productos.Nombre!);
-             if item.name!.elementsEqual(productos.Nombre!) {
-             print("YES");
-             }else
-             {
-             //cartItems.append(objetCartItem)
-             }
-             }*/
         }
+        
         if (exite)
         {
-             print("EXISTE")
-            let objetCartItem = CartItem(name: productos.Nombre!,price: 1,quantity: total,unitVal: productos.TarifaAfiiados)
+            print("EXISTE")
+            productTotal = productTotal + cartItems[indice].price
+            quantityByProduct = 1 + cartItems[indice].quantity
+            let objetCartItem = CartItem(name: productos.Nombre!,price: productTotal ,quantity: quantityByProduct,unitVal: productos.TarifaAfiiados,productId: productos.IDCuso)
             cartItems[indice] = objetCartItem
-           
+            
         }else
         {
+            quantityByProduct  = 1;
+            let objetCartItem = CartItem(name: productos.Nombre!,price: productTotal,quantity:quantityByProduct,unitVal:productos.TarifaAfiiados!,productId: productos.IDCuso)
             cartItems.append(objetCartItem)
         }
         
         print(cartItems.count)
         let sendCartItems = NSKeyedArchiver.archivedData(withRootObject: cartItems)
         UserDefaults.standard.set(sendCartItems, forKey: "cartProduct")
-        
+        exite = false;
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -273,12 +266,14 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
         var nombrePrograma : String!
         var idPrograma : String!
         var descripcion:String!
+        var idCudo:String!
         descripcion = clickPrograma.Descripcion
         nombrePrograma = clickPrograma.Nombre;
+        idCudo = clickPrograma.IDCuso
         
         var people = [ProductoObject]()
         //pasar informacion real
-        people.append(ProductoObject(nombre: nombrePrograma,tarifaAfi: "fernando",descripcion: descripcion,horas: "dsa",cupos: "dasd"))
+        people.append(ProductoObject(nombre: nombrePrograma,tarifaAfi: "fernando",descripcion: descripcion,horas: "dsa",cupos: "dasd",IDCuso: idCudo))
         let placesData = NSKeyedArchiver.archivedData(withRootObject: people)
         UserDefaults.standard.set(placesData, forKey: "detalleProducto")
         

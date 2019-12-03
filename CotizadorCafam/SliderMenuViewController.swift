@@ -48,7 +48,7 @@ class SliderMenuViewController: UIViewController {
         }
         for producto in productCartItems {
             print(producto.name!)
-            let objetCartItem = CartItem(name: producto.name!,price: 1,quantity: 2,unitVal: producto.unitVal)
+            let objetCartItem = CartItem(name: producto.name!,price:producto.price,quantity: producto.quantity,unitVal: producto.unitVal,productId: producto.productId)
             self.productCartItems1.append(objetCartItem)
             self.tableViewCart.reloadData();
             //self.textViewNombreProduct.text = producto.Nombre!
@@ -107,6 +107,8 @@ extension SliderMenuViewController: UITableViewDataSource,UITableViewDelegate
         {
             cell.labelProductName?.text = productos.name!
             cell.labelPriceProducto?.text = "$"+productos.unitVal
+            cell.labelImporte?.text = "$"+String(productos.price)
+            cell.labelCount?.text = String(productos.quantity)
             //cell.labelPrice?.text = productos.TarifaAfiiados
             //cell.btn_mas?.tag = indexPath.row
             //cell.btn_mas?.addTarget(self, action: #selector(btnAgregarMas), for: .touchUpInside)

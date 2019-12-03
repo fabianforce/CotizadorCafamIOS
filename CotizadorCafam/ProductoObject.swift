@@ -14,19 +14,20 @@ class ProductoObject:NSObject, NSCoding {
     var Nombre: String!
     var Descripcion: String!;
     var Horas: String!
-    var IDCuso: Int!
+    var IDCuso: String!
     var TarifaAfiiados:String!;
     var TarifaANoafiiados:String!;
     var icon:String!;
     var Cupos:String!;
     
-    init(nombre: String, tarifaAfi: String, descripcion:String, horas: String, cupos: String )
+    init(nombre: String, tarifaAfi: String, descripcion:String, horas: String, cupos: String,IDCuso: String )
     {
         self.Nombre = nombre
         self.TarifaAfiiados = tarifaAfi
         self.Descripcion = descripcion
         self.Horas = horas
         self.Cupos = cupos
+        self.IDCuso = IDCuso
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,6 +36,7 @@ class ProductoObject:NSObject, NSCoding {
         self.Descripcion = aDecoder.decodeObject(forKey: "Descripcion") as? String ?? ""
         self.Horas = aDecoder.decodeObject(forKey: "Horas") as? String ?? ""
         self.Cupos = aDecoder.decodeObject(forKey: "Cupos") as? String ?? ""
+        self.IDCuso = aDecoder.decodeObject(forKey: "IDCuso") as? String ?? ""
     }
 
     func encode(with aCoder: NSCoder) {
@@ -43,5 +45,6 @@ class ProductoObject:NSObject, NSCoding {
         aCoder.encode(Descripcion, forKey: "Descripcion")
         aCoder.encode(Horas, forKey: "Horas")
         aCoder.encode(Cupos, forKey: "Cupos")
+        aCoder.encode(IDCuso, forKey: "IDCuso")
     }
 }
