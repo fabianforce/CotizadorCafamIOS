@@ -11,6 +11,7 @@ import UIKit
 class CartTableViewCell: UITableViewCell {
 
     @IBOutlet weak var labelProductName: UILabel!
+    @IBOutlet weak var labelPriceProducto: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

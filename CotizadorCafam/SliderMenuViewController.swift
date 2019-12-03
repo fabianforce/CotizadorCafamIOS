@@ -25,15 +25,15 @@ class SliderMenuViewController: UIViewController {
         self.tableViewCart.dataSource = self
         self.tableViewCart.delegate = self
         self.registerTbaleViewCells()
-        self.btnEnviarCoti.backgroundColor = .clear
+        //self.btnEnviarCoti.backgroundColor = .clear
         self.btnEnviarCoti.layer.cornerRadius = 5
-        self.btnEnviarCoti.layer.borderWidth = 1
-        self.btnEnviarCoti.layer.borderColor = UIColor.green.cgColor
+        //self.btnEnviarCoti.layer.borderWidth = 1
+        //self.btnEnviarCoti.layer.borderColor = UIColor.green.cgColor
         
-        self.btnMasOpciones.backgroundColor = .clear
+        //self.btnMasOpciones.backgroundColor = .clear
         self.btnMasOpciones.layer.cornerRadius = 5
-        self.btnMasOpciones.layer.borderWidth = 1
-        self.btnMasOpciones.layer.borderColor = UIColor.green.cgColor
+        //self.btnMasOpciones.layer.borderWidth = 1
+        //self.btnMasOpciones.layer.borderColor = UIColor.green.cgColor
         //print("hola perra")
         let preferences = UserDefaults.standard
         let total = preferences.string(forKey: "totalCart")
@@ -48,7 +48,7 @@ class SliderMenuViewController: UIViewController {
         }
         for producto in productCartItems {
             print(producto.name!)
-            let objetCartItem = CartItem(name: producto.name!,price: 1,quantity: 2,unitVal: producto.name)
+            let objetCartItem = CartItem(name: producto.name!,price: 1,quantity: 2,unitVal: producto.unitVal)
             self.productCartItems1.append(objetCartItem)
             self.tableViewCart.reloadData();
             //self.textViewNombreProduct.text = producto.Nombre!
@@ -106,6 +106,7 @@ extension SliderMenuViewController: UITableViewDataSource,UITableViewDelegate
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CartTableViewCell") as? CartTableViewCell
         {
             cell.labelProductName?.text = productos.name!
+            cell.labelPriceProducto?.text = "$"+productos.unitVal
             //cell.labelPrice?.text = productos.TarifaAfiiados
             //cell.btn_mas?.tag = indexPath.row
             //cell.btn_mas?.addTarget(self, action: #selector(btnAgregarMas), for: .touchUpInside)

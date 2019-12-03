@@ -193,6 +193,8 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
             cell.labelNombrePrograma?.text = productos.Nombre
             cell.labelPrice?.text = productos.TarifaAfiiados
             cell.btn_mas?.tag = indexPath.row
+            cell.btn_mes?.tag = indexPath.row
+            cell.btn_mes?.addTarget(self, action: #selector(btnQuitar), for: .touchUpInside)
             cell.btn_mas?.addTarget(self, action: #selector(btnAgregarMas), for: .touchUpInside)
             return cell
         }
@@ -205,13 +207,20 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
         cell!.textLabel?.text = productos.Nombre
         return cell!
     }
+    @objc func btnQuitar(_ sender: UIButton) {
+        let producto = self.productItems[sender.tag]
+        let tarifaAfiliados = (producto.TarifaAfiiados as NSString).integerValue
+        total = total - tarifaAfiliados;
+    }
+    
     @objc func btnAgregarMas(_ sender: UIButton) {
+        var indice = 0;
         let productos = self.productItems[sender.tag]
         let tarifaAfiliados = (productos.TarifaAfiiados as NSString).integerValue
         total = total + tarifaAfiliados;
         let preferences = UserDefaults.standard
         preferences.set(total, forKey: "totalCart")
-        let objetCartItem = CartItem(name: productos.Nombre!,price: 1,quantity: total,unitVal: "")
+        let objetCartItem = CartItem(name: productos.Nombre!,price: 1,quantity: total,unitVal:productos.TarifaAfiiados!)
         
         if cartItems.count == 0 {
             print("vacio")
@@ -224,6 +233,7 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
                 {
                     //print("ESTA")
                     exite = true;
+                    indice = index
                 }else
                 {
                     //print("NO ESTA")
@@ -243,8 +253,8 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
         if (exite)
         {
              print("EXISTE")
-            let objetCartItem = CartItem(name: "PERRA",price: 1,quantity: total,unitVal: "")
-            cartItems[1] = objetCartItem
+            let objetCartItem = CartItem(name: productos.Nombre!,price: 1,quantity: total,unitVal: productos.TarifaAfiiados)
+            cartItems[indice] = objetCartItem
            
         }else
         {
