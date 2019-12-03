@@ -30,6 +30,7 @@ class MenuViewController: BaseViewController,PopupDeleget,PopupDelegetEje,PopupD
     var quantityByProduct = 0;
     
     var exite = false
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -212,9 +213,47 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
         return cell!
     }
     @objc func btnQuitar(_ sender: UIButton) {
+        var indice = 0;
+        var existeEnQuitar = false;
         let producto = self.productItems[sender.tag]
         let tarifaAfiliados = (producto.TarifaAfiiados as NSString).integerValue
         total = total - tarifaAfiliados;
+        if(total < 0)
+        {
+            total = 0;
+        }
+        if(cartItems.count > 0)
+        {
+            for (index, element) in cartItems.enumerated() {
+                print(index, ":", cartItems[index].productId!)
+                if(cartItems[index].productId! == producto.IDCuso!)
+                {
+                    existeEnQuitar = true;
+                    indice = index
+                }
+            }
+            if (existeEnQuitar)
+            {
+                if cartItems[indice].quantity! == 1 {
+                     print("ESTA EN 0")
+                    cartItems.remove(at: indice)
+                }else
+                {
+                    productTotal = cartItems[indice].price - (producto.TarifaAfiiados as NSString).doubleValue
+                    quantityByProduct = cartItems[indice].quantity - 1;
+                    let objetCartItem = CartItem(name: producto.Nombre!,price: productTotal ,quantity: quantityByProduct,unitVal: producto.TarifaAfiiados,productId: producto.IDCuso)
+                    cartItems[indice] = objetCartItem
+                }
+            }
+            
+        }else
+        {
+            print("CARRITO VACIO")
+        }
+        let preferences = UserDefaults.standard
+        let sendCartItems = NSKeyedArchiver.archivedData(withRootObject: cartItems)
+        preferences.set(total, forKey: "totalCart")
+        preferences.set(sendCartItems, forKey: "cartProduct")
     }
     
     @objc func btnAgregarMas(_ sender: UIButton) {
