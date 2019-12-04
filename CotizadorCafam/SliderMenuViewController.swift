@@ -64,7 +64,7 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
         var MYpopupView:AlertEmailViewController!
         MYpopupView = AlertEmailViewController(nibName:"AlertEmailViewController", bundle: nil)
         self.view.alpha = 1.0
-       // MYpopupView.closePopupProductos = self
+        // MYpopupView.closePopupProductos = self
         self.presentpopupViewController(popupViewController: MYpopupView, animationType: .BottomTop, completion: {() -> Void in
         })
         
@@ -103,8 +103,45 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
         let textFieldCell = UINib(nibName: "CartTableViewCell", bundle: nil);
         self.tableViewCart.register(textFieldCell, forCellReuseIdentifier: "CartTableViewCell")
     }
-    
-    
+    @objc func btnAddCartItem(_ sender: UIButton) {
+        
+        print(sender.tag)
+        let productos = self.productCartItems1[sender.tag]
+        productos.quantity = productos.quantity + 1;
+        let myString = productos.unitVal!
+        let myFloat = (myString as NSString).doubleValue
+        productos.price = productos.price+myFloat;
+        let objetCartItem = CartItem(name: productos.name!,price:productos.price,quantity: productos.quantity,unitVal: productos.unitVal,productId: productos.productId!)
+        self.productCartItems1[sender.tag] = objetCartItem
+        self.tableViewCart.reloadData();
+        let sendCartItems = NSKeyedArchiver.archivedData(withRootObject:  self.productCartItems1)
+        UserDefaults.standard.set(sendCartItems, forKey: "cartProduct")
+        
+    }
+    @objc func btnLessCartItem(_ sender: UIButton) {
+        print(sender.tag)
+        let productos = self.productCartItems1[sender.tag]
+        productos.quantity = productos.quantity - 1;
+        let myString = productos.unitVal!
+        let myFloat = (myString as NSString).doubleValue
+        productos.price = productos.price-myFloat;
+        if(productos.quantity == 0)
+        {
+           self.productCartItems1.remove(at: sender.tag)
+           self.tableViewCart.reloadData();
+            
+        }else
+        {
+            let objetCartItem = CartItem(name: productos.name!,price:productos.price,quantity: productos.quantity,unitVal: productos.unitVal,productId: productos.productId!)
+            self.productCartItems1[sender.tag] = objetCartItem
+            self.tableViewCart.reloadData();
+        }
+        
+        
+        let sendCartItems = NSKeyedArchiver.archivedData(withRootObject:  self.productCartItems1)
+        UserDefaults.standard.set(sendCartItems, forKey: "cartProduct")
+        
+    }
 }
 extension SliderMenuViewController: UITableViewDataSource,UITableViewDelegate
 {
@@ -125,6 +162,10 @@ extension SliderMenuViewController: UITableViewDataSource,UITableViewDelegate
             cell.labelPriceProducto?.text = "$"+productos.unitVal
             cell.labelImporte?.text = "$"+String(productos.price)
             cell.labelCount?.text = String(productos.quantity)
+            cell.btn_add?.tag = indexPath.row
+            cell.btn_add?.addTarget(self, action: #selector(btnAddCartItem), for: .touchUpInside)
+            cell.btn_less?.tag = indexPath.row
+            cell.btn_less?.addTarget(self, action: #selector(btnLessCartItem), for: .touchUpInside)
             //cell.labelPrice?.text = productos.TarifaAfiiados
             //cell.btn_mas?.tag = indexPath.row
             //cell.btn_mas?.addTarget(self, action: #selector(btnAgregarMas), for: .touchUpInside)
@@ -142,6 +183,7 @@ extension SliderMenuViewController: UITableViewDataSource,UITableViewDelegate
         cell!.textLabel?.text = productos.name //
         return cell!
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //let clickInfraestructura = self.items[indexPath.row]
         var idInfraestuctura : String!

@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="promo" translatesAutoresizingMaskIntoConstraints="NO" id="HXc-ND-0Ta">
-                    <rect key="frame" x="135" y="118" width="131.00000000000023" height="115.00000000000023"/>
+                    <rect key="frame" x="135" y="118" width="131" height="115"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="115" id="oj4-dc-gQG"/>
                     </constraints>

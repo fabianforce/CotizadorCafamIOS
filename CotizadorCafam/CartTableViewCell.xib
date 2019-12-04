@@ -140,6 +140,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="btn_add" destination="cEh-3V-ZG5" id="e0n-Ge-rhQ"/>
+                <outlet property="btn_less" destination="Dif-d5-rZV" id="k6Z-gS-nEV"/>
                 <outlet property="labelCount" destination="Plf-Fm-2mp" id="fRD-ff-uBW"/>
                 <outlet property="labelImporte" destination="ZZs-cc-jYa" id="xfE-Zz-jDD"/>
                 <outlet property="labelPriceProducto" destination="cIh-ml-CLZ" id="4hm-02-RRb"/>

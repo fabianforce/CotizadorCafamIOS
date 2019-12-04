@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 
-class MenuViewController: BaseViewController,PopupDeleget,PopupDelegetEje,PopupDelegetPrograma,PopupDelegetProductos {
+class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDelegetPrograma,PopupDelegetProductos,SlideMenuDelegate{
     
     
     var tableView:UITableView!
@@ -28,9 +28,11 @@ class MenuViewController: BaseViewController,PopupDeleget,PopupDelegetEje,PopupD
     var total = 0;
     var productTotal = 0.0;
     var quantityByProduct = 0;
+    var productCartItemsPrueba = Data() as? [CartItem]
+    var getProduct = NSData() as? NSData;
     
     var exite = false
-   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +40,13 @@ class MenuViewController: BaseViewController,PopupDeleget,PopupDelegetEje,PopupD
         self.tableViewProductos.delegate = self
         self.registerTbaleViewCells()
         addSlideMenuButton()
+        
+        getProduct = UserDefaults.standard.object(forKey: "cartProduct") as? NSData;
+        print("hptaa" , getProduct?.length)
+        
+        /*productCartItemsPrueba = NSKeyedUnarchiver.unarchiveObject(with: getProduct as! Data) as? [CartItem]
+         print("hptaa1" , productCartItemsPrueba!.count)*/
+        
         
     }
     func closeTapped() {
@@ -53,8 +62,6 @@ class MenuViewController: BaseViewController,PopupDeleget,PopupDelegetEje,PopupD
             
             
         }
-        
-        //print(preferences.string(forKey: "infraNombre")!)
         
     }
     func closeTapped1() {
@@ -124,6 +131,8 @@ class MenuViewController: BaseViewController,PopupDeleget,PopupDelegetEje,PopupD
     }
     
     @IBAction func btnOpenModalPorgramas(_ sender: Any) {
+        
+        
         //EJES DE FORMACION
         var MYpopupView:AlertInfraViewController!
         MYpopupView = AlertInfraViewController(nibName:"AlertInfraViewController", bundle: nil)
@@ -173,8 +182,120 @@ class MenuViewController: BaseViewController,PopupDeleget,PopupDelegetEje,PopupD
     
     override func viewDidDisappear(_ animated: Bool) {
         if (self.isBeingDismissed || self.isMovingFromParent) {
-            print("hola mundo")
+            print("hola mundo pgl")
         }
+    }
+    //SE PASO TODO LO DE BASEVIEWCONTROLLER EN MENUVIEWCONTROLLER PARA HACER EL getproduct DENTRO DE slideMenuItemSelectArIndex MIRAR luego como pasar a como estaba para no dejar mucho codigo aqui!!--
+    func slideMenuItemSelectArIndex(_ index: Int32) {
+        getProduct = UserDefaults.standard.object(forKey: "cartProduct") as? NSData;
+        print("hola mundoxxxxx");
+        //getProduct = UserDefaults.standard.object(forKey: "cartProduct") as? NSData;
+        
+        let topViewController : UIViewController = self.navigationController!.topViewController!
+        print("View Controller is : \(topViewController) \n", terminator: "")
+        switch(index){
+        case 0:
+            print("Home\n", terminator: "")
+            
+            self.openViewControllerBasedOnIdentifier("Home")
+            
+            break
+        case 1:
+            print("Play\n", terminator: "")
+            
+            self.openViewControllerBasedOnIdentifier("PlayVC")
+            
+            break
+        default:
+            print("default\n", terminator: "")
+            /*productCartItemsPrueba = NSKeyedUnarchiver.unarchiveObject(with: getProduct! as Data) as? [CartItem]*/
+        }
+    }
+    
+    func openViewControllerBasedOnIdentifier(_ strIdentifier:String){
+        let destViewController : UIViewController = self.storyboard!.instantiateViewController(withIdentifier: strIdentifier)
+        
+        let topViewController : UIViewController = self.navigationController!.topViewController!
+        
+        if (topViewController.restorationIdentifier! == destViewController.restorationIdentifier!){
+            print("Same VC")
+        } else {
+            self.navigationController!.pushViewController(destViewController, animated: true)
+        }
+    }
+    
+    func addSlideMenuButton(){
+        let btnShowMenu = UIButton(type: UIButton.ButtonType.system)
+        btnShowMenu.setImage(self.defaultMenuImage(), for: UIControl.State())
+        btnShowMenu.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        btnShowMenu.addTarget(self, action: #selector(onSlideMenuButtonPressed(_:)), for: UIControl.Event.touchUpInside)
+        let customBarItem = UIBarButtonItem(customView: btnShowMenu)
+        self.navigationItem.rightBarButtonItem = customBarItem;
+    }
+    
+    func defaultMenuImage() -> UIImage {
+        var defaultMenuImage = UIImage()
+        
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 30, height: 22), false, 0.0)
+        
+        UIColor.black.setFill()
+        UIBezierPath(rect: CGRect(x: 0, y: 3, width: 30, height: 1)).fill()
+        UIBezierPath(rect: CGRect(x: 0, y: 10, width: 30, height: 1)).fill()
+        UIBezierPath(rect: CGRect(x: 0, y: 17, width: 30, height: 1)).fill()
+        
+        UIColor.white.setFill()
+        UIBezierPath(rect: CGRect(x: 0, y: 4, width: 30, height: 1)).fill()
+        UIBezierPath(rect: CGRect(x: 0, y: 11,  width: 30, height: 1)).fill()
+        UIBezierPath(rect: CGRect(x: 0, y: 18, width: 30, height: 1)).fill()
+        
+        defaultMenuImage = UIGraphicsGetImageFromCurrentImageContext()!
+        
+        UIGraphicsEndImageContext()
+        
+        return defaultMenuImage;
+    }
+    
+    @objc func onSlideMenuButtonPressed(_ sender : UIButton){
+        print("JEAN ")
+        if (sender.tag == 10)
+        {
+            // To Hide Menu If it already there
+            self.slideMenuItemSelectArIndex(-1);
+            
+            sender.tag = 0;
+            
+            let viewMenuBack : UIView = view.subviews.last!
+            
+            UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                var frameMenu : CGRect = viewMenuBack.frame
+                frameMenu.origin.x = 1 * UIScreen.main.bounds.size.width
+                viewMenuBack.frame = frameMenu
+                viewMenuBack.layoutIfNeeded()
+                viewMenuBack.backgroundColor = UIColor.clear
+            }, completion: { (finished) -> Void in
+                viewMenuBack.removeFromSuperview()
+            })
+            
+            return
+        }
+        
+        sender.isEnabled = false
+        sender.tag = 10
+        
+        let menuVC : SliderMenuViewController = self.storyboard!.instantiateViewController(withIdentifier: "SliderMenuViewController") as! SliderMenuViewController
+        //menuVC.btnMenu = sender
+        //menuVC.delegate = self
+        self.view.addSubview(menuVC.view)
+        self.addChild(menuVC)
+        menuVC.view.layoutIfNeeded()
+        
+        
+        menuVC.view.frame=CGRect(x: 0 + UIScreen.main.bounds.size.width, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
+        
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+            menuVC.view.frame=CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
+            sender.isEnabled = true
+        }, completion:nil)
     }
     
     
@@ -213,90 +334,195 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
         return cell!
     }
     @objc func btnQuitar(_ sender: UIButton) {
-        var indice = 0;
-        var existeEnQuitar = false;
-        let producto = self.productItems[sender.tag]
-        let tarifaAfiliados = (producto.TarifaAfiiados as NSString).integerValue
-        total = total - tarifaAfiliados;
-        if(total < 0)
+        if(getProduct==nil)
         {
-            total = 0;
-        }
-        if(cartItems.count > 0)
-        {
-            for (index, element) in cartItems.enumerated() {
-                print(index, ":", cartItems[index].productId!)
-                if(cartItems[index].productId! == producto.IDCuso!)
-                {
-                    existeEnQuitar = true;
-                    indice = index
-                }
-            }
-            if (existeEnQuitar)
+            var indice = 0;
+            var existeEnQuitar = false;
+            let producto = self.productItems[sender.tag]
+            let tarifaAfiliados = (producto.TarifaAfiiados as NSString).integerValue
+            total = total - tarifaAfiliados;
+            if(total < 0)
             {
-                if cartItems[indice].quantity! == 1 {
-                     print("ESTA EN 0")
-                    cartItems.remove(at: indice)
-                }else
-                {
-                    productTotal = cartItems[indice].price - (producto.TarifaAfiiados as NSString).doubleValue
-                    quantityByProduct = cartItems[indice].quantity - 1;
-                    let objetCartItem = CartItem(name: producto.Nombre!,price: productTotal ,quantity: quantityByProduct,unitVal: producto.TarifaAfiiados,productId: producto.IDCuso)
-                    cartItems[indice] = objetCartItem
-                }
+                total = 0;
             }
-            
+            if(cartItems.count > 0)
+            {
+                for (index, element) in cartItems.enumerated() {
+                    print(index, ":", cartItems[index].productId!)
+                    if(cartItems[index].productId! == producto.IDCuso!)
+                    {
+                        existeEnQuitar = true;
+                        indice = index
+                    }
+                }
+                if (existeEnQuitar)
+                {
+                    if cartItems[indice].quantity! == 1 {
+                        print("ESTA EN 0")
+                        cartItems.remove(at: indice)
+                    }else
+                    {
+                        productTotal = cartItems[indice].price - (producto.TarifaAfiiados as NSString).doubleValue
+                        quantityByProduct = cartItems[indice].quantity - 1;
+                        let objetCartItem = CartItem(name: producto.Nombre!,price: productTotal ,quantity: quantityByProduct,unitVal: producto.TarifaAfiiados,productId: producto.IDCuso)
+                        cartItems[indice] = objetCartItem
+                    }
+                }
+                
+            }else
+            {
+                print("CARRITO VACIO")
+            }
+            let preferences = UserDefaults.standard
+            let sendCartItems = NSKeyedArchiver.archivedData(withRootObject: cartItems)
+            preferences.set(total, forKey: "totalCart")
+            preferences.set(sendCartItems, forKey: "cartProduct")
         }else
         {
-            print("CARRITO VACIO")
+            productCartItemsPrueba = NSKeyedUnarchiver.unarchiveObject(with: getProduct as! Data) as? [CartItem]
+            print("hptaa1" , productCartItemsPrueba!.count)
+            cartItems = productCartItemsPrueba!
+            var indice = 0;
+            var existeEnQuitar = false;
+            let producto = self.productItems[sender.tag]
+            let tarifaAfiliados = (producto.TarifaAfiiados as NSString).integerValue
+            total = total - tarifaAfiliados;
+            if(total < 0)
+            {
+                total = 0;
+            }
+            if(cartItems.count > 0)
+            {
+                for (index, element) in cartItems.enumerated() {
+                    print(index, ":", cartItems[index].productId!)
+                    if(cartItems[index].productId! == producto.IDCuso!)
+                    {
+                        existeEnQuitar = true;
+                        indice = index
+                    }
+                }
+                if (existeEnQuitar)
+                {
+                    if cartItems[indice].quantity! == 1 {
+                        print("ESTA EN 0")
+                        cartItems.remove(at: indice)
+                    }else
+                    {
+                        productTotal = cartItems[indice].price - (producto.TarifaAfiiados as NSString).doubleValue
+                        quantityByProduct = cartItems[indice].quantity - 1;
+                        let objetCartItem = CartItem(name: producto.Nombre!,price: productTotal ,quantity: quantityByProduct,unitVal: producto.TarifaAfiiados,productId: producto.IDCuso)
+                        cartItems[indice] = objetCartItem
+                    }
+                }
+                
+            }else
+            {
+                print("CARRITO VACIO")
+            }
+            let preferences = UserDefaults.standard
+            let sendCartItems = NSKeyedArchiver.archivedData(withRootObject: cartItems)
+            preferences.set(total, forKey: "totalCart")
+            preferences.set(sendCartItems, forKey: "cartProduct")
+            
         }
-        let preferences = UserDefaults.standard
-        let sendCartItems = NSKeyedArchiver.archivedData(withRootObject: cartItems)
-        preferences.set(total, forKey: "totalCart")
-        preferences.set(sendCartItems, forKey: "cartProduct")
+        getProduct = UserDefaults.standard.object(forKey: "cartProduct") as? NSData;
+        
     }
     
     @objc func btnAgregarMas(_ sender: UIButton) {
-        var indice = 0;
-        let productos = self.productItems[sender.tag]
-        let tarifaAfiliados = (productos.TarifaAfiiados as NSString).integerValue
-        total = total + tarifaAfiliados;
-        let preferences = UserDefaults.standard
-        preferences.set(total, forKey: "totalCart")
-        productTotal = (productos.TarifaAfiiados as NSString).doubleValue
-        print("FERNANDO",productos.IDCuso!)
-        if cartItems.count > 0 {
-            //productTotal = 0;
-            for (index, element) in cartItems.enumerated() {
-                print(index, ":", cartItems[index].productId!)
-                if(cartItems[index].productId! == productos.IDCuso!)
-                {
-                    //print("ESTA")
-                    exite = true;
-                    indice = index
+        if(getProduct==nil)
+        {
+            var indice = 0;
+            let productos = self.productItems[sender.tag]
+            let tarifaAfiliados = (productos.TarifaAfiiados as NSString).integerValue
+            total = total + tarifaAfiliados;
+            let preferences = UserDefaults.standard
+            preferences.set(total, forKey: "totalCart")
+            productTotal = (productos.TarifaAfiiados as NSString).doubleValue
+            print("FERNANDO",productos.IDCuso!)
+            if cartItems.count > 0 {
+                //productTotal = 0;
+                for (index, element) in cartItems.enumerated() {
+                    print(index, ":", cartItems[index].productId!)
+                    if(cartItems[index].productId! == productos.IDCuso!)
+                    {
+                        //print("ESTA")
+                        exite = true;
+                        indice = index
+                    }
                 }
             }
-        }
-        
-        if (exite)
-        {
-            print("EXISTE")
-            productTotal = productTotal + cartItems[indice].price
-            quantityByProduct = 1 + cartItems[indice].quantity
-            let objetCartItem = CartItem(name: productos.Nombre!,price: productTotal ,quantity: quantityByProduct,unitVal: productos.TarifaAfiiados,productId: productos.IDCuso)
-            cartItems[indice] = objetCartItem
+            
+            if (exite)
+            {
+                print("EXISTE")
+                productTotal = productTotal + cartItems[indice].price
+                quantityByProduct = 1 + cartItems[indice].quantity
+                let objetCartItem = CartItem(name: productos.Nombre!,price: productTotal ,quantity: quantityByProduct,unitVal: productos.TarifaAfiiados,productId: productos.IDCuso)
+                cartItems[indice] = objetCartItem
+                
+            }else
+            {
+                quantityByProduct  = 1;
+                let objetCartItem = CartItem(name: productos.Nombre!,price: productTotal,quantity:quantityByProduct,unitVal:productos.TarifaAfiiados!,productId: productos.IDCuso)
+                cartItems.append(objetCartItem)
+            }
+            
+            print(cartItems.count)
+            let sendCartItems = NSKeyedArchiver.archivedData(withRootObject: cartItems)
+            UserDefaults.standard.set(sendCartItems, forKey: "cartProduct")
+            exite = false;
             
         }else
         {
-            quantityByProduct  = 1;
-            let objetCartItem = CartItem(name: productos.Nombre!,price: productTotal,quantity:quantityByProduct,unitVal:productos.TarifaAfiiados!,productId: productos.IDCuso)
-            cartItems.append(objetCartItem)
+            print("ya no es null")
+            productCartItemsPrueba = NSKeyedUnarchiver.unarchiveObject(with: getProduct as! Data) as? [CartItem]
+            print("hptaa1" , productCartItemsPrueba!.count)
+            cartItems = productCartItemsPrueba!
+            var indice = 0;
+            let productos = self.productItems[sender.tag]
+            let tarifaAfiliados = (productos.TarifaAfiiados as NSString).integerValue
+            total = total + tarifaAfiliados;
+            let preferences = UserDefaults.standard
+            preferences.set(total, forKey: "totalCart")
+            productTotal = (productos.TarifaAfiiados as NSString).doubleValue
+            print("FERNANDO",productos.IDCuso!)
+            if cartItems.count > 0 {
+                //productTotal = 0;
+                for (index, element) in cartItems.enumerated() {
+                    print(index, ":", cartItems[index].productId!)
+                    if(cartItems[index].productId! == productos.IDCuso!)
+                    {
+                        //print("ESTA")
+                        exite = true;
+                        indice = index
+                    }
+                }
+            }
+            
+            if (exite)
+            {
+                print("EXISTE")
+                productTotal = productTotal + cartItems[indice].price
+                quantityByProduct = 1 + cartItems[indice].quantity
+                let objetCartItem = CartItem(name: productos.Nombre!,price: productTotal ,quantity: quantityByProduct,unitVal: productos.TarifaAfiiados,productId: productos.IDCuso)
+                cartItems[indice] = objetCartItem
+                
+            }else
+            {
+                quantityByProduct  = 1;
+                let objetCartItem = CartItem(name: productos.Nombre!,price: productTotal,quantity:quantityByProduct,unitVal:productos.TarifaAfiiados!,productId: productos.IDCuso)
+                cartItems.append(objetCartItem)
+            }
+            print("cantidad ===> ", cartItems[indice].quantity)
+            print(cartItems.count)
+            let sendCartItems = NSKeyedArchiver.archivedData(withRootObject: cartItems)
+            UserDefaults.standard.set(sendCartItems, forKey: "cartProduct")
+            exite = false;
+            
         }
+        getProduct = UserDefaults.standard.object(forKey: "cartProduct") as? NSData;
         
-        print(cartItems.count)
-        let sendCartItems = NSKeyedArchiver.archivedData(withRootObject: cartItems)
-        UserDefaults.standard.set(sendCartItems, forKey: "cartProduct")
-        exite = false;
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
