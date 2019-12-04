@@ -26,6 +26,8 @@
 		C6892FD1239001D300AA86B4 /* AlertInfoProgramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6892FCF239001D300AA86B4 /* AlertInfoProgramaViewController.swift */; };
 		C6892FD2239001D400AA86B4 /* AlertInfoProgramaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6892FD0239001D300AA86B4 /* AlertInfoProgramaViewController.xib */; };
 		C69275BB238886010065E07D /* ServiceMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69275BA238886010065E07D /* ServiceMenuViewController.swift */; };
+		C6B24B012397EA0200C420C6 /* AlertEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B24AFF2397EA0200C420C6 /* AlertEmailViewController.swift */; };
+		C6B24B022397EA0200C420C6 /* AlertEmailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6B24B002397EA0200C420C6 /* AlertEmailViewController.xib */; };
 		C6B4E0E62395966D00D1D39F /* CartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B4E0E42395966D00D1D39F /* CartTableViewCell.swift */; };
 		C6B4E0E72395966D00D1D39F /* CartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6B4E0E52395966D00D1D39F /* CartTableViewCell.xib */; };
 		C6DE529B238EE81E00A50ACD /* ProductoObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DE529A238EE81E00A50ACD /* ProductoObject.swift */; };
@@ -88,6 +90,8 @@
 		C6892FCF239001D300AA86B4 /* AlertInfoProgramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertInfoProgramaViewController.swift; sourceTree = "<group>"; };
 		C6892FD0239001D300AA86B4 /* AlertInfoProgramaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertInfoProgramaViewController.xib; sourceTree = "<group>"; };
 		C69275BA238886010065E07D /* ServiceMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMenuViewController.swift; sourceTree = "<group>"; };
+		C6B24AFF2397EA0200C420C6 /* AlertEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertEmailViewController.swift; sourceTree = "<group>"; };
+		C6B24B002397EA0200C420C6 /* AlertEmailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertEmailViewController.xib; sourceTree = "<group>"; };
 		C6B4E0E42395966D00D1D39F /* CartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewCell.swift; sourceTree = "<group>"; };
 		C6B4E0E52395966D00D1D39F /* CartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartTableViewCell.xib; sourceTree = "<group>"; };
 		C6DE529A238EE81E00A50ACD /* ProductoObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductoObject.swift; sourceTree = "<group>"; };
@@ -205,6 +209,8 @@
 				C6892FD0239001D300AA86B4 /* AlertInfoProgramaViewController.xib */,
 				C6B4E0E42395966D00D1D39F /* CartTableViewCell.swift */,
 				C6B4E0E52395966D00D1D39F /* CartTableViewCell.xib */,
+				C6B24AFF2397EA0200C420C6 /* AlertEmailViewController.swift */,
+				C6B24B002397EA0200C420C6 /* AlertEmailViewController.xib */,
 			);
 			path = CotizadorCafam;
 			sourceTree = "<group>";
@@ -333,6 +339,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6B24B022397EA0200C420C6 /* AlertEmailViewController.xib in Resources */,
 				C6B4E0E72395966D00D1D39F /* CartTableViewCell.xib in Resources */,
 				C6892FD2239001D400AA86B4 /* AlertInfoProgramaViewController.xib in Resources */,
 				C6EA18872387481F00B1DA85 /* AlertInfraViewController.xib in Resources */,
@@ -415,6 +422,7 @@
 				C6892FD1239001D300AA86B4 /* AlertInfoProgramaViewController.swift in Sources */,
 				C6B4E0E62395966D00D1D39F /* CartTableViewCell.swift in Sources */,
 				C6639B792391777700DAD1FA /* BaseViewController.swift in Sources */,
+				C6B24B012397EA0200C420C6 /* AlertEmailViewController.swift in Sources */,
 				C612361D237F067D0021BE95 /* ViewController.swift in Sources */,
 				C6EA18902387694D00B1DA85 /* AlertProgramaViewController.swift in Sources */,
 				C6123619237F067D0021BE95 /* AppDelegate.swift in Sources */,

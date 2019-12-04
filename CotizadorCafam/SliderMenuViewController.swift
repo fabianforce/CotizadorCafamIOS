@@ -11,7 +11,7 @@ protocol SlideMenuDelegate{
     func slideMenuItemSelectArIndex(_ index : Int32)
 }
 
-class SliderMenuViewController: UIViewController {
+class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
     var btnMenu : UIButton!
     var delegate : SlideMenuDelegate?
     var productCartItems1: [CartItem] = []
@@ -59,6 +59,22 @@ class SliderMenuViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func btn_mas_opciones(_ sender: Any) {
+        
+        var MYpopupView:AlertEmailViewController!
+        MYpopupView = AlertEmailViewController(nibName:"AlertEmailViewController", bundle: nil)
+        self.view.alpha = 1.0
+       // MYpopupView.closePopupProductos = self
+        self.presentpopupViewController(popupViewController: MYpopupView, animationType: .BottomTop, completion: {() -> Void in
+        })
+        
+        
+    }
+    func closeTappedDescuento()
+    {
+        self.dismissPopupViewController(animationType: SLpopupViewAnimationType.Fade)
+        
+    }
     
     @IBAction func btnCloseSliderMenu(_ sender: UIButton) {
         btnClose.tag = 0
