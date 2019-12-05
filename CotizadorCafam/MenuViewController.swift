@@ -30,6 +30,7 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
     var quantityByProduct = 0;
     var productCartItemsPrueba = Data() as? [CartItem]
     var getProduct = NSData() as? NSData;
+    var totalCartMemoria = String()
     
     var exite = false
     
@@ -40,9 +41,10 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
         self.tableViewProductos.delegate = self
         self.registerTbaleViewCells()
         addSlideMenuButton()
-        
         getProduct = UserDefaults.standard.object(forKey: "cartProduct") as? NSData;
         print("hptaa" , getProduct?.length)
+        
+        //totalCartMemoria = UserDefaults.standard.string(forKey: "totalCart")!
         
         /*productCartItemsPrueba = NSKeyedUnarchiver.unarchiveObject(with: getProduct as! Data) as? [CartItem]
          print("hptaa1" , productCartItemsPrueba!.count)*/
@@ -185,10 +187,12 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
             print("hola mundo pgl")
         }
     }
+    
     //SE PASO TODO LO DE BASEVIEWCONTROLLER EN MENUVIEWCONTROLLER PARA HACER EL getproduct DENTRO DE slideMenuItemSelectArIndex MIRAR luego como pasar a como estaba para no dejar mucho codigo aqui!!--
     func slideMenuItemSelectArIndex(_ index: Int32) {
         getProduct = UserDefaults.standard.object(forKey: "cartProduct") as? NSData;
         print("hola mundoxxxxx");
+        self.navigationItem.hidesBackButton = false
         //getProduct = UserDefaults.standard.object(forKey: "cartProduct") as? NSData;
         
         let topViewController : UIViewController = self.navigationController!.topViewController!
@@ -231,6 +235,7 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
         btnShowMenu.addTarget(self, action: #selector(onSlideMenuButtonPressed(_:)), for: UIControl.Event.touchUpInside)
         let customBarItem = UIBarButtonItem(customView: btnShowMenu)
         self.navigationItem.rightBarButtonItem = customBarItem;
+        
     }
     
     func defaultMenuImage() -> UIImage {
@@ -256,7 +261,8 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
     }
     
     @objc func onSlideMenuButtonPressed(_ sender : UIButton){
-        print("JEAN ")
+        print("open ")
+        self.navigationItem.hidesBackButton = true
         if (sender.tag == 10)
         {
             // To Hide Menu If it already there
@@ -382,6 +388,9 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
             productCartItemsPrueba = NSKeyedUnarchiver.unarchiveObject(with: getProduct as! Data) as? [CartItem]
             print("hptaa1" , productCartItemsPrueba!.count)
             cartItems = productCartItemsPrueba!
+            let totalCartString = UserDefaults.standard.string(forKey: "totalCart")
+            let totalCartInt = Int(totalCartString!)
+            total = totalCartInt!
             var indice = 0;
             var existeEnQuitar = false;
             let producto = self.productItems[sender.tag]
@@ -479,6 +488,9 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
             productCartItemsPrueba = NSKeyedUnarchiver.unarchiveObject(with: getProduct as! Data) as? [CartItem]
             print("hptaa1" , productCartItemsPrueba!.count)
             cartItems = productCartItemsPrueba!
+            let totalCartString = UserDefaults.standard.string(forKey: "totalCart")
+            let totalCartInt = Int(totalCartString!)
+            total = totalCartInt!
             var indice = 0;
             let productos = self.productItems[sender.tag]
             let tarifaAfiliados = (productos.TarifaAfiiados as NSString).integerValue

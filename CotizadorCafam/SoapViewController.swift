@@ -17,6 +17,7 @@ class SoapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UserDefaults.standard.removeObject(forKey: "cartProduct")
+        //UserDefaults.standard.removeObject(forKey: "totalCart")
         UserDefaults.standard.synchronize()
         let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
         NombreText.leftView = paddingView
