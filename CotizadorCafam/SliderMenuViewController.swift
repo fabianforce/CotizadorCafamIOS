@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SwiftyJSON
+import Alamofire
 protocol SlideMenuDelegate{
     func slideMenuItemSelectArIndex(_ index : Int32)
 }
@@ -21,6 +23,15 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
     @IBOutlet weak var btnEnviarCoti: UIButton!
     @IBOutlet weak var btnMasOpciones: UIButton!
     var total = 0;
+    struct RequestFormat: Encodable {
+        var IDCuso:String
+        var countUnitario:Int
+        var tarifaAfiiados:String
+        var nombre:String
+        var horas:String
+        var cupo:String
+        var sumUnitario:Double
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableViewCart.dataSource = self
@@ -52,7 +63,7 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
         }
         for producto in productCartItems {
             print(producto.name!)
-            let objetCartItem = CartItem(name: producto.name!,price:producto.price,quantity: producto.quantity,unitVal: producto.unitVal,productId: producto.productId)
+            let objetCartItem = CartItem(name: producto.name!,price:producto.price!,quantity: producto.quantity!,unitVal: producto.unitVal!,productId: producto.productId!)
             self.productCartItems1.append(objetCartItem)
             self.tableViewCart.reloadData();
             //self.textViewNombreProduct.text = producto.Nombre!
@@ -74,6 +85,81 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
         
         
     }
+    
+    @IBAction func btn_enviar_cotizacion(_ sender: Any) {
+        var newArray = [RequestFormat]()
+        print(self.productCartItems1[0].name!)
+        print("dario =>", JSON.rawString(JSON(self.productCartItems1)))
+        print( "name :\(self.productCartItems1) \n company \(self.productCartItems1)")
+        let checker = JSONSerialization.isValidJSONObject(self.productCartItems1)
+        print("SI PUEDO ==>" , checker)
+        /*"cursos":[
+         "IDCuso":"2",
+         "countUnitario":"34",
+         "tarifaAfiiados":"123123"
+         ]*/
+        let encondeA = JSONEncoder()
+        //let result = try encondeA.encode(self.productCartItems1)
+        for (index, element) in self.productCartItems1.enumerated() {
+            
+            let requestOject = RequestFormat(IDCuso:"34",
+                                             countUnitario:self.productCartItems1[index].quantity,
+                                             tarifaAfiiados:self.productCartItems1[index].unitVal, nombre: productCartItems1[index].name,horas: "4", cupo: "2",sumUnitario:productCartItems1[index].price )
+            newArray.append(requestOject)
+        }
+        do {
+            let result = try encondeA.encode(newArray)
+            if let resultStting = String(data: result, encoding: .utf8)
+            {
+                print(resultStting)
+                let url = "http://3.133.205.205/cafam/webservices/ws.php?request=action"
+                     AF.request(url, method: .post, parameters:  [
+                         "apiKey": "58587775f2f54284a4e8b5e92e0b611f",
+                         "method":"setCotizacion",
+                         "IDUsuario":1,
+                         "Estado":"1",
+                         "CorreoJefe":"fabiancasti_94@hotmail.com",
+                         "CorreoCliente":UserDefaults.standard.string(forKey: "clienteEmail")!,
+                         "Descuento":"10",
+                         "Pagado":"si",
+                         "cursos":resultStting,
+                         "IDCliente":1,
+                         "ValorTotal":String(total),
+                         "FechaCotizacion":"10-06-1994",
+                         "correo":"fabiancasti_94@hotmail.com",
+                         "nombreCliente":UserDefaults.standard.string(forKey: "clienteName")!,
+                         "numDocumento":"8709787",
+                         "servicio":"si",
+                         "esAfiliado":"si",
+                         "tipoAfiliado":"Mayot",
+                         "tipoEvento":"ingles",
+                         "NomUsuario":"Fabito prueba",
+                         "mailUsuario":"fabiancasti_94@hotmail.com",
+                         "lugar":"An gil",
+                         
+                     ]).responseJSON {
+                         response in
+                         switch (response.result) {
+                         case .success:
+                             print("respuesta==>" , response.value!)
+                             let json = JSON(response.value!)
+                             if let arr = json.arrayObject as? [[String:AnyObject]] {
+                                 
+                             }
+                             break
+                         case .failure:
+                             print(Error.self)
+                         }
+                         //self.tableViewProductos.reloadData();
+                     }
+            }
+        } catch  {
+            print("error")
+        }
+        
+        
+    }
+    
     func closeTappedDescuento()
     {
         self.dismissPopupViewController(animationType: SLpopupViewAnimationType.Fade)
@@ -114,7 +200,7 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
         let myString = productos.unitVal!
         let myFloat = (myString as NSString).doubleValue
         productos.price = productos.price+myFloat;
-        let objetCartItem = CartItem(name: productos.name!,price:productos.price,quantity: productos.quantity,unitVal: productos.unitVal,productId: productos.productId!)
+        let objetCartItem = CartItem(name: productos.name!,price:productos.price!,quantity: productos.quantity!,unitVal: productos.unitVal!,productId: productos.productId!)
         self.productCartItems1[sender.tag] = objetCartItem
         self.tableViewCart.reloadData();
         let preferences = UserDefaults.standard
@@ -150,7 +236,7 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
             
         }else
         {
-            let objetCartItem = CartItem(name: productos.name!,price:productos.price,quantity: productos.quantity,unitVal: productos.unitVal,productId: productos.productId!)
+            let objetCartItem = CartItem(name: productos.name!,price:productos.price!,quantity: productos.quantity!,unitVal: productos.unitVal!,productId: productos.productId!)
             self.productCartItems1[sender.tag] = objetCartItem
             self.tableViewCart.reloadData();
         }

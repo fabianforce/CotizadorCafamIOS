@@ -299,10 +299,10 @@ extension ViewController {
     func updateLogging(text : String) {
         
         if Thread.isMainThread {
-            self.loggingText.text = text
+            //self.loggingText.text = text
         } else {
             DispatchQueue.main.async {
-                self.loggingText.text = text
+                //self.loggingText.text = text
             }
         }
     }

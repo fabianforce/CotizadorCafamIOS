@@ -13,7 +13,9 @@ class SoapViewController: UIViewController {
     @IBOutlet weak var NombreText: UITextField!
     @IBOutlet weak var esAfiliadoSwitch: UISwitch!
     @IBOutlet weak var labelAfiliado: UILabel!
+    @IBOutlet weak var textFiledCorreo: UITextField!
     
+    @IBOutlet weak var textFieldNombre: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         UserDefaults.standard.removeObject(forKey: "cartProduct")
@@ -36,6 +38,14 @@ class SoapViewController: UIViewController {
             self.labelAfiliado.text = "No Afiliado"
         }
     }
+    
+    @IBAction func ingresar(_ sender: Any) {
+    UserDefaults.standard.set(self.textFiledCorreo?.text, forKey: "clienteEmail")
+    UserDefaults.standard.set(self.textFieldNombre?.text, forKey: "clienteName")
+    
+    }
+    
+    
     func initUI() {
         
     }
