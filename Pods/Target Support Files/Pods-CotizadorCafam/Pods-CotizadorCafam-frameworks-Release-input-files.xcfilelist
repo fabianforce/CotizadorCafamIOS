@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-CotizadorCafam/Pods-CotizadorCafam-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/MSAL/MSAL.framework
+${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework
 ${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework

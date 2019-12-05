@@ -9,10 +9,10 @@
 import UIKit
 import SwiftyJSON
 import Alamofire
+import SCLAlertView
 protocol SlideMenuDelegate{
     func slideMenuItemSelectArIndex(_ index : Int32)
 }
-
 class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
     var btnMenu : UIButton!
     var delegate : SlideMenuDelegate?
@@ -52,7 +52,9 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
         if totalString?.count == 0 {
             totalString = "0";
         }
-        self.labelTotal?.text = "$" + totalString!
+        let dd = totalString
+        let entero = Int(dd!)
+        self.labelTotal?.text = "$" + entero!.formattedWithSeparator
         guard let getProduct = UserDefaults.standard.object(forKey: "cartProduct") as? NSData else {
             print("'places' not found in UserDefaults")
             return
@@ -118,34 +120,39 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
                          "method":"setCotizacion",
                          "IDUsuario":1,
                          "Estado":"1",
-                         "CorreoJefe":"fabiancasti_94@hotmail.com",
+                         "CorreoJefe":"prueba5@cafam.com.co",//descuento
                          "CorreoCliente":UserDefaults.standard.string(forKey: "clienteEmail")!,
                          "Descuento":"10",
                          "Pagado":"si",
                          "cursos":resultStting,
                          "IDCliente":1,
                          "ValorTotal":String(total),
-                         "FechaCotizacion":"10-06-1994",
-                         "correo":"fabiancasti_94@hotmail.com",
+                         "FechaCotizacion":"05-12-2019",
+                         "correo":"prueba5@cafam.com.co",
                          "nombreCliente":UserDefaults.standard.string(forKey: "clienteName")!,
                          "numDocumento":"8709787",
                          "servicio":"si",
                          "esAfiliado":"si",
-                         "tipoAfiliado":"Mayot",
+                         "tipoAfiliado":"afiliado",
                          "tipoEvento":"ingles",
-                         "NomUsuario":"Fabito prueba",
-                         "mailUsuario":"fabiancasti_94@hotmail.com",
-                         "lugar":"An gil",
+                         "NomUsuario":"Prueba 5",
+                         "mailUsuario":"prueba5@cafam.com.co",
+                         "lugar":"Bogota",
                          
                      ]).responseJSON {
                          response in
                          switch (response.result) {
                          case .success:
+                             SCLAlertView().showInfo("Correcto", subTitle: "La cotización se guardo correctamente")
                              print("respuesta==>" , response.value!)
                              let json = JSON(response.value!)
                              if let arr = json.arrayObject as? [[String:AnyObject]] {
                                  
                              }
+                             self.productCartItems1.removeAll();
+                             self.tableViewCart.reloadData();
+                             self.labelTotal?.text = "$0"
+                             UserDefaults.standard.removeObject(forKey: "cartProduct")
                              break
                          case .failure:
                              print(Error.self)
@@ -212,7 +219,8 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
         let sendCartItems = NSKeyedArchiver.archivedData(withRootObject:  self.productCartItems1)
         UserDefaults.standard.set(sendCartItems, forKey: "cartProduct")
         preferences.set(total, forKey: "totalCart")
-        self.labelTotal?.text = "$" + String(total)
+        
+        self.labelTotal?.text = "$" + total.formattedWithSeparator
         
     }
     @objc func btnLessCartItem(_ sender: UIButton) {
@@ -245,10 +253,25 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
         let sendCartItems = NSKeyedArchiver.archivedData(withRootObject:  self.productCartItems1)
         UserDefaults.standard.set(sendCartItems, forKey: "cartProduct")
         preferences.set(total, forKey: "totalCart")
-        self.labelTotal?.text = "$" + String(total)
+        self.labelTotal?.text = "$" + total.formattedWithSeparator
         
     }
 }
+
+extension Int{
+        var formattedWithSeparator1: String {
+            return Formatter.withSeparator.string(for: self) ?? ","
+        }
+    }
+extension Formatter {
+    static let withSeparator1: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.groupingSeparator = ","
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+}
+
 extension SliderMenuViewController: UITableViewDataSource,UITableViewDelegate
 {
     
@@ -313,6 +336,8 @@ extension SliderMenuViewController: UITableViewDataSource,UITableViewDelegate
             // Couldn't Save
             print("Preferences could not be saved!")
         }
+        
     }
+    
     
 }

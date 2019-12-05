@@ -169,6 +169,12 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
         let textFieldCell = UINib(nibName: "CustomTableViewCell", bundle: nil);
         self.tableViewProductos.register(textFieldCell, forCellReuseIdentifier: "CustomTableViewCell")
     }
+    func convertDoubleToCurrency(amount: Double) -> String{
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .currency
+        numberFormatter.locale = Locale.current
+        return numberFormatter.string(from: NSNumber(value: amount))!
+    }
     
     @IBAction func btnShowModalProgramas(_ sender: Any) {
         
@@ -307,6 +313,20 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
     
     
 }
+extension Int{
+        var formattedWithSeparator: String {
+            return Formatter.withSeparator.string(for: self) ?? ","
+        }
+    }
+extension Formatter {
+    static let withSeparator: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.groupingSeparator = ","
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+}
+
 extension MenuViewController: UITableViewDataSource,UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -318,12 +338,23 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "CELL")
         }
-        
         let productos = self.productItems[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell") as? CustomTableViewCell
         {
+            let currencyFormatter = NumberFormatter()
+            currencyFormatter.usesGroupingSeparator = true
+            currencyFormatter.numberStyle = .currency
+            // localize to your grouping and decimal separator
+            currencyFormatter.locale = Locale.current
+
+            // We'll force unwrap with the !, if you've got defined data you may need more error checking
+            let myString1 = productos.TarifaAfiiados!
+            let myInt1 = Int(myString1)
+            let priceString = currencyFormatter.string(from:myInt1 as! NSNumber)!
+            print(priceString)
+            //withSeparator.string(for: self) ?? ""
             cell.labelNombrePrograma?.text = productos.Nombre
-            cell.labelPrice?.text = productos.TarifaAfiiados
+            cell.labelPrice?.text = "$"+myInt1!.formattedWithSeparator
             cell.btn_mas?.tag = indexPath.row
             cell.btn_mes?.tag = indexPath.row
             cell.btn_mes?.addTarget(self, action: #selector(btnQuitar), for: .touchUpInside)
