@@ -244,7 +244,26 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
         btnShowMenu.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
         btnShowMenu.addTarget(self, action: #selector(onSlideMenuButtonPressed(_:)), for: UIControl.Event.touchUpInside)
         let customBarItem = UIBarButtonItem(customView: btnShowMenu)
-        self.navigationItem.rightBarButtonItem = customBarItem;
+       
+        let image1 = UIImage(named: "Checkbox.png") as UIImage?
+        let btnShowMenu1 = UIButton(type: UIButton.ButtonType.custom) as UIButton
+        btnShowMenu1.setImage(image1, for: UIControl.State.normal)
+        btnShowMenu1.imageView?.contentMode = .scaleAspectFit
+        btnShowMenu1.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        btnShowMenu1.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
+        btnShowMenu1.addTarget(self, action: #selector(onSlideMenuButtonPressed(_:)), for: UIControl.Event.touchUpInside)
+        let customBarItem1 = UIBarButtonItem(customView: btnShowMenu1)
+        
+       // self.navigationItem.rightBarButtonItem = [customBarItem, customBarItem1]
+        
+        /*let button1 = UIBarButtonItem(image: UIImage(named: "image1.png"), style: .plain, target: self, action: "methodA")
+        let button2 = UIBarButtonItem(image: UIImage(named: "image2.png"), style: .plain, target: self, action: "methodB")
+        let button3 = UIBarButtonItem(image: UIImage(named: "image3.png"), style: .plain, target: self, action: "methodC")
+
+           navigationItem.leftItemsSupplementBackButton = true
+           navigationItem.setLeftBarButtonItem(button1, animated: true)
+           navigationItem.setRightBarButtonItems([button2, button3], animated: true)*/
+        self.navigationItem.setRightBarButtonItems([customBarItem, customBarItem1], animated: false)
         
     }
     
