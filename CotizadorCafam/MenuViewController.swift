@@ -195,6 +195,7 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
     }
     
     //SE PASO TODO LO DE BASEVIEWCONTROLLER EN MENUVIEWCONTROLLER PARA HACER EL getproduct DENTRO DE slideMenuItemSelectArIndex MIRAR luego como pasar a como estaba para no dejar mucho codigo aqui!!--
+    
     func slideMenuItemSelectArIndex(_ index: Int32) {
         getProduct = UserDefaults.standard.object(forKey: "cartProduct") as? NSData;
         print("hola mundoxxxxx");
@@ -235,19 +236,25 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
     }
     
     func addSlideMenuButton(){
-        let btnShowMenu = UIButton(type: UIButton.ButtonType.system)
-        btnShowMenu.setImage(self.defaultMenuImage(), for: UIControl.State())
-        btnShowMenu.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        let image = UIImage(named: "Checkbox.png") as UIImage?
+        let btnShowMenu = UIButton(type: UIButton.ButtonType.custom) as UIButton
+        btnShowMenu.setImage(image, for: UIControl.State.normal)
+        btnShowMenu.imageView?.contentMode = .scaleAspectFit
+        btnShowMenu.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        btnShowMenu.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
         btnShowMenu.addTarget(self, action: #selector(onSlideMenuButtonPressed(_:)), for: UIControl.Event.touchUpInside)
         let customBarItem = UIBarButtonItem(customView: btnShowMenu)
         self.navigationItem.rightBarButtonItem = customBarItem;
         
     }
     
-    func defaultMenuImage() -> UIImage {
-        var defaultMenuImage = UIImage()
+    func defaultMenuImage() -> UIImageView {
+        //var defaultMenuImage = UIImage()
+        let imgView = UIImageView()
+        imgView.frame = CGRect(x: 0, y: 2, width: 30, height: 30)
+        imgView.image = UIImage(named: "yourimagename")//Assign image to ImageView
         
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: 30, height: 22), false, 0.0)
+       /* UIGraphicsBeginImageContextWithOptions(CGSize(width: 30, height: 22), false, 0.0)
         
         UIColor.black.setFill()
         UIBezierPath(rect: CGRect(x: 0, y: 3, width: 30, height: 1)).fill()
@@ -261,9 +268,9 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
         
         defaultMenuImage = UIGraphicsGetImageFromCurrentImageContext()!
         
-        UIGraphicsEndImageContext()
+        UIGraphicsEndImageContext()*/
         
-        return defaultMenuImage;
+        return imgView;
     }
     
     @objc func onSlideMenuButtonPressed(_ sender : UIButton){
