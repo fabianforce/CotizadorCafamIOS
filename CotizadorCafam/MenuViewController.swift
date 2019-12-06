@@ -28,9 +28,11 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
     var total = 0;
     var productTotal = 0.0;
     var quantityByProduct = 0;
+    var totalQuantity = 0;
     var productCartItemsPrueba = Data() as? [CartItem]
     var getProduct = NSData() as? NSData;
     var totalCartMemoria = String()
+    var btnShowCount = UIButton()
     
     var exite = false
     
@@ -197,9 +199,15 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
     //SE PASO TODO LO DE BASEVIEWCONTROLLER EN MENUVIEWCONTROLLER PARA HACER EL getproduct DENTRO DE slideMenuItemSelectArIndex MIRAR luego como pasar a como estaba para no dejar mucho codigo aqui!!--
     
     func slideMenuItemSelectArIndex(_ index: Int32) {
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
         getProduct = UserDefaults.standard.object(forKey: "cartProduct") as? NSData;
         print("hola mundoxxxxx");
+        let preferences = UserDefaults.standard
+        totalQuantity = preferences.integer(forKey: "totalQuantity")
+        self.btnShowCount.isHidden = false;
         self.navigationItem.hidesBackButton = false
+         self.btnShowCount.setTitle(String(totalQuantity), for: UIControl.State.normal)
         //getProduct = UserDefaults.standard.object(forKey: "cartProduct") as? NSData;
         
         let topViewController : UIViewController = self.navigationController!.topViewController!
@@ -236,7 +244,7 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
     }
     
     func addSlideMenuButton(){
-        let image = UIImage(named: "Checkbox.png") as UIImage?
+        let image = UIImage(named: "car_icon.png") as UIImage?
         let btnShowMenu = UIButton(type: UIButton.ButtonType.custom) as UIButton
         btnShowMenu.setImage(image, for: UIControl.State.normal)
         btnShowMenu.imageView?.contentMode = .scaleAspectFit
@@ -244,56 +252,53 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
         btnShowMenu.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
         btnShowMenu.addTarget(self, action: #selector(onSlideMenuButtonPressed(_:)), for: UIControl.Event.touchUpInside)
         let customBarItem = UIBarButtonItem(customView: btnShowMenu)
-       
-        let image1 = UIImage(named: "Checkbox.png") as UIImage?
-        let btnShowMenu1 = UIButton(type: UIButton.ButtonType.custom) as UIButton
-        btnShowMenu1.setImage(image1, for: UIControl.State.normal)
-        btnShowMenu1.imageView?.contentMode = .scaleAspectFit
-        btnShowMenu1.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        btnShowMenu1.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
-        btnShowMenu1.addTarget(self, action: #selector(onSlideMenuButtonPressed(_:)), for: UIControl.Event.touchUpInside)
-        let customBarItem1 = UIBarButtonItem(customView: btnShowMenu1)
         
-       // self.navigationItem.rightBarButtonItem = [customBarItem, customBarItem1]
+        btnShowCount = UIButton(type: UIButton.ButtonType.custom) as UIButton
+        btnShowCount.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        btnShowCount.setTitle("0",for: UIControl.State.normal)
+        btnShowCount.titleLabel?.font.withSize(24)
+        btnShowCount.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        btnShowCount.setTitleColor(.red,for: UIControl.State.normal)
+        btnShowCount.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
+        let customBarItem1 = UIBarButtonItem(customView: btnShowCount)
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        self.navigationItem.title = "Cantidad"
+        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+        self.navigationController?.navigationBar.barTintColor = hexStringToUIColor(hex: "#012275")
         
-        /*let button1 = UIBarButtonItem(image: UIImage(named: "image1.png"), style: .plain, target: self, action: "methodA")
-        let button2 = UIBarButtonItem(image: UIImage(named: "image2.png"), style: .plain, target: self, action: "methodB")
-        let button3 = UIBarButtonItem(image: UIImage(named: "image3.png"), style: .plain, target: self, action: "methodC")
-
-           navigationItem.leftItemsSupplementBackButton = true
-           navigationItem.setLeftBarButtonItem(button1, animated: true)
-           navigationItem.setRightBarButtonItems([button2, button3], animated: true)*/
         self.navigationItem.setRightBarButtonItems([customBarItem, customBarItem1], animated: false)
+       
+     
         
     }
-    
-    func defaultMenuImage() -> UIImageView {
-        //var defaultMenuImage = UIImage()
-        let imgView = UIImageView()
-        imgView.frame = CGRect(x: 0, y: 2, width: 30, height: 30)
-        imgView.image = UIImage(named: "yourimagename")//Assign image to ImageView
-        
-       /* UIGraphicsBeginImageContextWithOptions(CGSize(width: 30, height: 22), false, 0.0)
-        
-        UIColor.black.setFill()
-        UIBezierPath(rect: CGRect(x: 0, y: 3, width: 30, height: 1)).fill()
-        UIBezierPath(rect: CGRect(x: 0, y: 10, width: 30, height: 1)).fill()
-        UIBezierPath(rect: CGRect(x: 0, y: 17, width: 30, height: 1)).fill()
-        
-        UIColor.white.setFill()
-        UIBezierPath(rect: CGRect(x: 0, y: 4, width: 30, height: 1)).fill()
-        UIBezierPath(rect: CGRect(x: 0, y: 11,  width: 30, height: 1)).fill()
-        UIBezierPath(rect: CGRect(x: 0, y: 18, width: 30, height: 1)).fill()
-        
-        defaultMenuImage = UIGraphicsGetImageFromCurrentImageContext()!
-        
-        UIGraphicsEndImageContext()*/
-        
-        return imgView;
+    //FUNCION COLOR HEXADECIMAL
+    func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+
+        var rgbValue:UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
+
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
     }
     
     @objc func onSlideMenuButtonPressed(_ sender : UIButton){
         print("open ")
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.clear]
+        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+        self.btnShowCount.isHidden = true;
         self.navigationItem.hidesBackButton = true
         if (sender.tag == 10)
         {
@@ -340,10 +345,10 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
     
 }
 extension Int{
-        var formattedWithSeparator: String {
-            return Formatter.withSeparator.string(for: self) ?? ","
-        }
+    var formattedWithSeparator: String {
+        return Formatter.withSeparator.string(for: self) ?? ","
     }
+}
 extension Formatter {
     static let withSeparator: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -372,7 +377,7 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
             currencyFormatter.numberStyle = .currency
             // localize to your grouping and decimal separator
             currencyFormatter.locale = Locale.current
-
+            
             // We'll force unwrap with the !, if you've got defined data you may need more error checking
             let myString1 = productos.TarifaAfiiados!
             let myInt1 = Int(myString1)
@@ -397,6 +402,11 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
         return cell!
     }
     @objc func btnQuitar(_ sender: UIButton) {
+        if(totalQuantity <= 0)
+        {
+            totalQuantity = 0;
+        }
+    
         if(getProduct==nil)
         {
             var indice = 0;
@@ -410,6 +420,7 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
             }
             if(cartItems.count > 0)
             {
+                print("PERRO OLOROSO")
                 for (index, element) in cartItems.enumerated() {
                     print(index, ":", cartItems[index].productId!)
                     if(cartItems[index].productId! == producto.IDCuso!)
@@ -422,6 +433,7 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
                 {
                     if cartItems[indice].quantity! == 1 {
                         print("ESTA EN 0")
+                        totalQuantity = 0;
                         cartItems.remove(at: indice)
                     }else
                     {
@@ -435,6 +447,7 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
             }else
             {
                 print("CARRITO VACIO")
+                totalQuantity = 0;
             }
             let preferences = UserDefaults.standard
             let sendCartItems = NSKeyedArchiver.archivedData(withRootObject: cartItems)
@@ -442,6 +455,7 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
             preferences.set(sendCartItems, forKey: "cartProduct")
         }else
         {
+            
             productCartItemsPrueba = NSKeyedUnarchiver.unarchiveObject(with: getProduct as! Data) as? [CartItem]
             print("hptaa1" , productCartItemsPrueba!.count)
             cartItems = productCartItemsPrueba!
@@ -456,9 +470,11 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
             if(total < 0)
             {
                 total = 0;
+                 //totalQuantity = 0;
             }
             if(cartItems.count > 0)
             {
+            
                 for (index, element) in cartItems.enumerated() {
                     print(index, ":", cartItems[index].productId!)
                     if(cartItems[index].productId! == producto.IDCuso!)
@@ -469,11 +485,14 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
                 }
                 if (existeEnQuitar)
                 {
+                    totalQuantity = totalQuantity - 1;
+                    self.btnShowCount.setTitle(String(totalQuantity), for: UIControl.State.normal)
                     if cartItems[indice].quantity! == 1 {
                         print("ESTA EN 0")
                         cartItems.remove(at: indice)
                     }else
                     {
+                       
                         productTotal = cartItems[indice].price - (producto.TarifaAfiiados as NSString).doubleValue
                         quantityByProduct = cartItems[indice].quantity - 1;
                         let objetCartItem = CartItem(name: producto.Nombre!,price: productTotal ,quantity: quantityByProduct,unitVal: producto.TarifaAfiiados,productId: producto.IDCuso)
@@ -492,6 +511,8 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
             
         }
         getProduct = UserDefaults.standard.object(forKey: "cartProduct") as? NSData;
+        let preferences = UserDefaults.standard
+        preferences.set(totalQuantity, forKey: "totalQuantity")
         
     }
     
@@ -502,6 +523,8 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
             let productos = self.productItems[sender.tag]
             let tarifaAfiliados = (productos.TarifaAfiiados as NSString).integerValue
             total = total + tarifaAfiliados;
+            totalQuantity = 1;
+            self.btnShowCount.setTitle(String(totalQuantity), for: UIControl.State.normal)
             let preferences = UserDefaults.standard
             preferences.set(total, forKey: "totalCart")
             productTotal = (productos.TarifaAfiiados as NSString).doubleValue
@@ -521,7 +544,8 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
             
             if (exite)
             {
-                print("EXISTE")
+                //totalQuantity = totalQuantity + 1
+                self.btnShowCount.setTitle(String(totalQuantity), for: UIControl.State.normal)
                 productTotal = productTotal + cartItems[indice].price
                 quantityByProduct = 1 + cartItems[indice].quantity
                 let objetCartItem = CartItem(name: productos.Nombre!,price: productTotal ,quantity: quantityByProduct,unitVal: productos.TarifaAfiiados,productId: productos.IDCuso)
@@ -529,6 +553,8 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
                 
             }else
             {
+                //totalQuantity = totalQuantity + 1
+                //self.btnShowCount.setTitle(String(totalQuantity), for: UIControl.State.normal)
                 quantityByProduct  = 1;
                 let objetCartItem = CartItem(name: productos.Nombre!,price: productTotal,quantity:quantityByProduct,unitVal:productos.TarifaAfiiados!,productId: productos.IDCuso)
                 cartItems.append(objetCartItem)
@@ -541,6 +567,11 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
             
         }else
         {
+            //totalQuantity = totalQuantity + 1
+            let x : Int = totalQuantity
+            var myString = String(x)
+            print("EXISTE ==>", myString)
+            self.btnShowCount.setTitle(myString, for: UIControl.State.normal)
             print("ya no es null")
             productCartItemsPrueba = NSKeyedUnarchiver.unarchiveObject(with: getProduct as! Data) as? [CartItem]
             print("hptaa1" , productCartItemsPrueba!.count)
@@ -571,6 +602,8 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
             
             if (exite)
             {
+                totalQuantity = totalQuantity + 1
+                self.btnShowCount.setTitle(String(totalQuantity), for: UIControl.State.normal)
                 print("EXISTE")
                 productTotal = productTotal + cartItems[indice].price
                 quantityByProduct = 1 + cartItems[indice].quantity
@@ -579,7 +612,9 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
                 
             }else
             {
-                quantityByProduct  = 1;
+                totalQuantity = totalQuantity + 1
+                self.btnShowCount.setTitle(String(totalQuantity), for: UIControl.State.normal)
+                    quantityByProduct  = 1;
                 let objetCartItem = CartItem(name: productos.Nombre!,price: productTotal,quantity:quantityByProduct,unitVal:productos.TarifaAfiiados!,productId: productos.IDCuso)
                 cartItems.append(objetCartItem)
             }
@@ -591,6 +626,8 @@ extension MenuViewController: UITableViewDataSource,UITableViewDelegate
             
         }
         getProduct = UserDefaults.standard.object(forKey: "cartProduct") as? NSData;
+        let preferences = UserDefaults.standard
+        preferences.set(totalQuantity, forKey: "totalQuantity")
         
     }
     

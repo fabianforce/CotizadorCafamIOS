@@ -22,7 +22,9 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
     @IBOutlet weak var tableViewCart: UITableView!
     @IBOutlet weak var btnEnviarCoti: UIButton!
     @IBOutlet weak var btnMasOpciones: UIButton!
+    @IBOutlet weak var labelGenralQuantity: UILabel!
     var total = 0;
+    var generalQuantity = 0
     struct RequestFormat: Encodable {
         var IDCuso:String
         var countUnitario:Int
@@ -49,6 +51,9 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
         //print("hola perra")
         let preferences = UserDefaults.standard
         var totalString = preferences.string(forKey: "totalCart")
+         generalQuantity = preferences.integer(forKey: "totalQuantity")
+        self.labelGenralQuantity?.text = String(generalQuantity)
+
         if totalString?.count == 0 {
             totalString = "0";
         }
@@ -201,6 +206,14 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
         self.tableViewCart.register(textFieldCell, forCellReuseIdentifier: "CartTableViewCell")
     }
     @objc func btnAddCartItem(_ sender: UIButton) {
+        let preferences = UserDefaults.standard
+        generalQuantity = generalQuantity + 1
+        if(generalQuantity == 0)
+        {
+            generalQuantity = 0;
+        }
+        self.labelGenralQuantity?.text = String(generalQuantity)
+        print("QUANITYT = >>" , generalQuantity)
         
         let productos = self.productCartItems1[sender.tag]
         productos.quantity = productos.quantity + 1;
@@ -210,7 +223,6 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
         let objetCartItem = CartItem(name: productos.name!,price:productos.price!,quantity: productos.quantity!,unitVal: productos.unitVal!,productId: productos.productId!)
         self.productCartItems1[sender.tag] = objetCartItem
         self.tableViewCart.reloadData();
-        let preferences = UserDefaults.standard
         let totalString = preferences.string(forKey: "totalCart")
         let totalInt = Int(totalString!)
         let unitarioString = productos.unitVal
@@ -221,6 +233,7 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
         preferences.set(total, forKey: "totalCart")
         
         self.labelTotal?.text = "$" + total.formattedWithSeparator
+        preferences.set(generalQuantity, forKey: "totalQuantity")
         
     }
     @objc func btnLessCartItem(_ sender: UIButton) {
@@ -234,6 +247,7 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
         total = totalInt! - unitarioInt!
         
         productos.quantity = productos.quantity - 1;
+        generalQuantity = generalQuantity - 1
         let myString = productos.unitVal!
         let myFloat = (myString as NSString).doubleValue
         productos.price = productos.price-myFloat;
@@ -244,6 +258,7 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
             
         }else
         {
+           // generalQuantity = generalQuantity - 1
             let objetCartItem = CartItem(name: productos.name!,price:productos.price!,quantity: productos.quantity!,unitVal: productos.unitVal!,productId: productos.productId!)
             self.productCartItems1[sender.tag] = objetCartItem
             self.tableViewCart.reloadData();
@@ -254,6 +269,8 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
         UserDefaults.standard.set(sendCartItems, forKey: "cartProduct")
         preferences.set(total, forKey: "totalCart")
         self.labelTotal?.text = "$" + total.formattedWithSeparator
+        self.labelGenralQuantity?.text = String(generalQuantity)
+        preferences.set(generalQuantity, forKey: "totalQuantity")
         
     }
 }
