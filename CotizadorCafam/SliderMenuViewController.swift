@@ -51,9 +51,9 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
         //print("hola perra")
         let preferences = UserDefaults.standard
         var totalString = preferences.string(forKey: "totalCart")
-         generalQuantity = preferences.integer(forKey: "totalQuantity")
+        generalQuantity = preferences.integer(forKey: "totalQuantity")
         self.labelGenralQuantity?.text = String(generalQuantity)
-
+        
         if totalString?.count == 0 {
             totalString = "0";
         }
@@ -95,9 +95,9 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
     
     @IBAction func btn_enviar_cotizacion(_ sender: Any) {
         var newArray = [RequestFormat]()
-        print(self.productCartItems1[0].name!)
-        print("dario =>", JSON.rawString(JSON(self.productCartItems1)))
-        print( "name :\(self.productCartItems1) \n company \(self.productCartItems1)")
+        //print(self.productCartItems1[0].name!)
+        //print("dario =>", JSON.rawString(JSON(self.productCartItems1)))
+        //print( "name :\(self.productCartItems1) \n company \(self.productCartItems1)")
         let checker = JSONSerialization.isValidJSONObject(self.productCartItems1)
         print("SI PUEDO ==>" , checker)
         /*"cursos":[
@@ -120,50 +120,72 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
             {
                 print(resultStting)
                 let url = "http://3.133.205.205/cafam/webservices/ws.php?request=action"
-                     AF.request(url, method: .post, parameters:  [
-                         "apiKey": "58587775f2f54284a4e8b5e92e0b611f",
-                         "method":"setCotizacion",
-                         "IDUsuario":1,
-                         "Estado":"1",
-                         "CorreoJefe":"prueba5@cafam.com.co",//descuento
-                         "CorreoCliente":UserDefaults.standard.string(forKey: "clienteEmail")!,
-                         "Descuento":"10",
-                         "Pagado":"si",
-                         "cursos":resultStting,
-                         "IDCliente":1,
-                         "ValorTotal":String(total),
-                         "FechaCotizacion":"05-12-2019",
-                         "correo":"prueba5@cafam.com.co",
-                         "nombreCliente":UserDefaults.standard.string(forKey: "clienteName")!,
-                         "numDocumento":"8709787",
-                         "servicio":"si",
-                         "esAfiliado":"si",
-                         "tipoAfiliado":"afiliado",
-                         "tipoEvento":"ingles",
-                         "NomUsuario":"Prueba 5",
-                         "mailUsuario":"prueba5@cafam.com.co",
-                         "lugar":"Bogota",
-                         
-                     ]).responseJSON {
-                         response in
-                         switch (response.result) {
-                         case .success:
-                             SCLAlertView().showInfo("Correcto", subTitle: "La cotización se guardo correctamente")
-                             print("respuesta==>" , response.value!)
-                             let json = JSON(response.value!)
-                             if let arr = json.arrayObject as? [[String:AnyObject]] {
-                                 
-                             }
-                             self.productCartItems1.removeAll();
-                             self.tableViewCart.reloadData();
-                             self.labelTotal?.text = "$0"
-                             UserDefaults.standard.removeObject(forKey: "cartProduct")
-                             break
-                         case .failure:
-                             print(Error.self)
-                         }
-                         //self.tableViewProductos.reloadData();
-                     }
+                AF.request(url, method: .post, parameters:  [
+                    "apiKey": "58587775f2f54284a4e8b5e92e0b611f",
+                    "method":"setCotizacion",
+                    "IDUsuario":1,
+                    "Estado":"1",
+                    "CorreoJefe":"prueba5@cafam.com.co",//descuento
+                    "CorreoCliente":UserDefaults.standard.string(forKey: "clienteEmail")!,
+                    "Descuento":"10",
+                    "Pagado":"si",
+                    "cursos":resultStting,
+                    "IDCliente":1,
+                    "ValorTotal":String(total),
+                    "FechaCotizacion":"05-12-2019",
+                    "correo":"prueba5@cafam.com.co",
+                    "nombreCliente":UserDefaults.standard.string(forKey: "clienteName")!,
+                    "numDocumento":"8709787",
+                    "servicio":"si",
+                    "esAfiliado":"si",
+                    "tipoAfiliado":"afiliado",
+                    "tipoEvento":"ingles",
+                    "NomUsuario":"Prueba 5",
+                    "mailUsuario":"prueba5@cafam.com.co",
+                    "lugar":"Bogota",
+                    
+                ]).responseJSON {
+                    response in
+                    switch (response.result) {
+                    case .success:
+                        SCLAlertView().showInfo("Correcto", subTitle: "La cotización se guardo correctamente")
+                        print("respuesta==>" , response.value!)
+                        let json = JSON(response.value!)
+                        if let arr = json.arrayObject as? [[String:AnyObject]] {
+                            
+                        }
+                        self.productCartItems1.removeAll();
+                        self.tableViewCart.reloadData();
+                        self.labelTotal?.text = "$0"
+                        //self.navigationItem.title = "Cantidad total"
+                        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "menuView") as? ServiceMenuViewController
+                        self.navigationController?.pushViewController(vc!, animated: true)
+                        self.navigationController?.navigationBar.backItem?.title = "Atras"
+                        
+                        /* let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.red]
+                        self.navigationItem.title = ""
+                        self.navigationController?.navigationBar.titleTextAttributes = textAttributes*/
+                               
+                        //self.navigationItem.setRightBarButtonItems([customBarItem, customBarItem1], animated: false)
+                        /*UserDefaults.standard.removeObject(forKey: "cartProduct")
+                        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        DispatchQueue.main.async {
+                            let newViewController = storyBoard.instantiateViewController(withIdentifier: "menuView") as! ServiceMenuViewController
+                            //self.navigationController?.pushViewController(newViewController, animated: true)
+                            self.navigationController?.isNavigationBarHidden = true
+                            self.navigationController?.show(newViewController, sender: "")
+                             self.present(newViewController, animated: true, completion: nil)
+                        }
+                        self.navigationController?.isNavigationBarHidden = true
+                        self.navigationController?.show(newViewController, sender: "")
+                        self.present(newViewController, animated: true, completion: nil)*/
+                        //let encounterViewController = self.storyboard?.instantiateViewController(withIdentifier: "menuView") as! ServiceMenuViewController
+                        break
+                    case .failure:
+                        print(Error.self)
+                    }
+                    //self.tableViewProductos.reloadData();
+                }
             }
         } catch  {
             print("error")
@@ -171,7 +193,28 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
         
         
     }
-    
+    //FUNCION COLOR HEXADECIMAL
+    func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+
+        var rgbValue:UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
+
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
     func closeTappedDescuento()
     {
         self.dismissPopupViewController(animationType: SLpopupViewAnimationType.Fade)
@@ -258,7 +301,7 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
             
         }else
         {
-           // generalQuantity = generalQuantity - 1
+            // generalQuantity = generalQuantity - 1
             let objetCartItem = CartItem(name: productos.name!,price:productos.price!,quantity: productos.quantity!,unitVal: productos.unitVal!,productId: productos.productId!)
             self.productCartItems1[sender.tag] = objetCartItem
             self.tableViewCart.reloadData();
@@ -276,10 +319,10 @@ class SliderMenuViewController: UIViewController,PopupDelegetProductosDescu {
 }
 
 extension Int{
-        var formattedWithSeparator1: String {
-            return Formatter.withSeparator.string(for: self) ?? ","
-        }
+    var formattedWithSeparator1: String {
+        return Formatter.withSeparator.string(for: self) ?? ","
     }
+}
 extension Formatter {
     static let withSeparator1: NumberFormatter = {
         let formatter = NumberFormatter()

@@ -262,7 +262,7 @@ class MenuViewController: UIViewController,PopupDeleget,PopupDelegetEje,PopupDel
         btnShowCount.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
         let customBarItem1 = UIBarButtonItem(customView: btnShowCount)
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-        self.navigationItem.title = "Cantidad"
+        self.navigationItem.title = "Cantidad total"
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
         self.navigationController?.navigationBar.barTintColor = hexStringToUIColor(hex: "#012275")
         

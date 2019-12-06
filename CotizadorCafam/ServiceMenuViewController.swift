@@ -13,7 +13,23 @@ class ServiceMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+      let logoutBarButtonItem = UIBarButtonItem(title: "Atras", style: .done, target: self, action: #selector(logoutUser))
+      self.navigationItem.leftBarButtonItem  = logoutBarButtonItem
+    }
+
+    @objc func logoutUser(){
+        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "SoapView") as? SoapViewController
+                              self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
+    
+    @IBAction func abrirCotizador(_ sender: Any) {
+    
+    let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "listProducts") as? MenuViewController
+        self.navigationController?.pushViewController(vc!, animated: true)
+        self.navigationController?.navigationBar.backItem?.title = "Atras"
+    
+    
     }
     
 

@@ -164,13 +164,13 @@
         <!--Menu View Controller-->
         <scene sceneID="5o9-bG-cVX">
             <objects>
-                <viewController id="Xff-ix-dgg" customClass="MenuViewController" customModule="CotizadorCafam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="listProducts" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Xff-ix-dgg" customClass="MenuViewController" customModule="CotizadorCafam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zqi-IZ-mAi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="q58-Cm-ogv">
-                                <rect key="frame" x="0.0" y="10" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="54" width="414" height="56"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nhS-av-fCO">
                                         <rect key="frame" x="8" y="8" width="398" height="40"/>
@@ -201,7 +201,7 @@
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D2c-GY-cPG">
-                                <rect key="frame" x="0.0" y="65" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="109" width="414" height="56"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="SELECCIONE UNA INFRAESTRUCTURA" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3b8-RO-Z97">
                                         <rect key="frame" x="8" y="8" width="358" height="40"/>
@@ -226,7 +226,7 @@
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5eE-b1-IuR">
-                                <rect key="frame" x="0.0" y="123" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="167" width="414" height="56"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="SELECCIONE UN PROGRAMA" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NVu-Cf-RMj">
                                         <rect key="frame" x="8" y="8" width="358" height="40"/>
@@ -251,7 +251,7 @@
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7RW-WM-AMZ">
-                                <rect key="frame" x="0.0" y="197" width="414" height="611"/>
+                                <rect key="frame" x="0.0" y="241" width="414" height="621"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
@@ -425,7 +425,7 @@
         <!--Service Menu View Controller-->
         <scene sceneID="DWL-gn-dpW">
             <objects>
-                <viewController id="rqr-ii-mNs" customClass="ServiceMenuViewController" customModule="CotizadorCafam" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="menuView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rqr-ii-mNs" customClass="ServiceMenuViewController" customModule="CotizadorCafam" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JKo-AD-U1t">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -463,7 +463,7 @@
                                             <constraint firstAttribute="width" constant="80" id="le4-qT-8cJ"/>
                                         </constraints>
                                         <connections>
-                                            <segue destination="Xff-ix-dgg" kind="show" id="vsL-VY-NoK"/>
+                                            <action selector="abrirCotizador:" destination="rqr-ii-mNs" eventType="touchUpInside" id="08m-fr-u3T"/>
                                         </connections>
                                     </button>
                                 </subviews>
